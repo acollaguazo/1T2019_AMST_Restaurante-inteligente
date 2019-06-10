@@ -1,7 +1,13 @@
-##Restaurante inteligente (velostat)_
-Grupo 4_
-Integrantes:_
-Josue Sanchez_
-Alberto Cruz_
-Jefferson Pazmiño_
-Steven Santillan_
+Restaurante inteligente (velostat)
+
+Grupo 4
+
+Integrantes:
+-Josue Sanchez
+
+-Alberto Cruz
+
+-Jefferson Pazmiño
+
+-Steven Santillan
+
