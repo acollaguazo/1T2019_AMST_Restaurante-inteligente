@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AppGrupo4</string>
+    // en el inicio
+    <string name="BotonIniciar">Iniciar</string>
+    // en el login
+    <string name="BotonLogin">Iniciar</string>
+    <string name="txtSmartTable">Smart Table</string>
+    <string name="txtUsuario">Usuario</string>
+    <string name="txtClave">Clave</string>
+    // en el menu
+    <string name="BotonDisponibilidad">Ver disponibilidad de mesas</string>
+    <string name="BotonEstadoTanque">Ver el estado del tanque</string>
+    <string name="BotonSalir">Salir</string>
+</resources>
