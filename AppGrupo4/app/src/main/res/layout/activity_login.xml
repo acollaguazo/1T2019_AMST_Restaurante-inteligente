@@ -4,45 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".Login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:gravity="center"
-            android:textSize="60sp"
-            tools:text="@string/txtSmartTable" />
+            android:text="@string/txtSmartTable"
+            android:textColor="#8BC34A"
+            android:textSize="70sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="316dp"
+            android:layout_height="164dp"
+            android:adjustViewBounds="false"
+            app:srcCompat="@drawable/mesa" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/txtUsuario"
-            android:layout_width="fill_parent"
+            android:layout_width="223dp"
             android:layout_height="wrap_content"
-            android:hint="@string/txtUsuario" />
+            android:layout_gravity="center"
+            android:background="#40009688"
+            android:drawableLeft="@drawable/ic_action_user"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:hint="@string/txtUsuario"
+            android:inputType="text"
+            android:textColor="#FAFAFA"
+            android:textColorHint="#FAFAFA" />
 
         <EditText
             android:id="@+id/txtPasswd"
-            android:layout_width="fill_parent"
+            android:layout_width="223dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="15dip"
             android:layout_marginBottom="30dip"
-            android:hint="@string/txtClave" />
+            android:background="#40009688"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:hint="@string/txtClave"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_action_pass"
+            android:textColor="#FCFBFB"
+            android:textColorHint="#FFFFFF" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent"
+            android:fontFamily="casual"
             android:onClick="Siguiente_menu"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
-            android:text="@string/BotonLogin" />
+            android:text="@string/BotonLogin"
+            android:textColor="#FAF7F7" />
 
     </LinearLayout>
 
