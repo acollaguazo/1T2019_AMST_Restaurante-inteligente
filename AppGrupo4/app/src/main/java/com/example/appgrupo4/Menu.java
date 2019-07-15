@@ -14,8 +14,13 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
-    public void Siguiente_disponibilidad(View view){
-        Intent siguiente = new Intent( this, Disponibilidad.class);
-        startActivity(siguiente);
+    public void next_disponibilidad(View view){
+        Intent next = new Intent(this, Disponibilidad.class);
+        startActivity(next);
+    }
+
+    public void next_estado(View view){
+        Intent next = new Intent(this,Estado.class);
+        startActivity(next);
     }
 }

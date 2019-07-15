@@ -18,7 +18,10 @@ android {
         }
     }
 }
-
+// Repositorio agregado para implementar el gráfico de pastel https://github.com/PhilJay/MPAndroidChart
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -26,4 +29,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // Dependencia agregada para implementar el gráfico de pastel (otras gráficas tambien se pueden usar) https://github.com/PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

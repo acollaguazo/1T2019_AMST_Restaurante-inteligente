@@ -30,11 +30,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:onClick="Siguiente_disponibilidad"
+            android:onClick="next_disponibilidad"
             android:text="@string/BotonDisponibilidad"
-            android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
@@ -46,6 +46,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:gravity="center"
+            android:onClick="next_estado"
             android:text="@string/BotonEstadoTanque"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />

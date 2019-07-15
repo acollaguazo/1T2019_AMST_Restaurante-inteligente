@@ -8,7 +8,7 @@
     <string name="txtUsuario">Usuario</string>
     <string name="txtClave">Clave</string>
     // en el menu
-    <string name="BotonDisponibilidad">Ver disponibilidad de mesas</string>
-    <string name="BotonEstadoTanque">Ver el estado del tanque</string>
-    <string name="BotonSalir">Salir</string>
+    <string name="BotonDisponibilidad">Ver mesas</string>
+    <string name="BotonEstadoTanque">Ver el estado del restaurante</string>
+    <string name="BotonSalir">Cerrar Sesión</string>
 </resources>
