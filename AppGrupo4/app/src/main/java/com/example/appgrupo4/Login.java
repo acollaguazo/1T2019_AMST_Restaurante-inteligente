@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import org.json.JSONObject;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,23 +34,22 @@ public class Login extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
     }
 
-
     public void irMenuPrincipal(View v){
-        final EditText usuario = (EditText) findViewById(R.id.txtUsuario);
-        final EditText password = (EditText) findViewById(R.id.txtPassword);
-        String str_usuario = usuario.getText().toString();
-        String str_password = password.getText().toString();
-        iniciarSesion(str_usuario,str_password);
+        final EditText usr = (EditText) findViewById(R.id.txtUsuario);
+        final EditText psswrd = (EditText) findViewById(R.id.txtPassword);
+        String str_usr = usr.getText().toString();
+        String str_psswd = psswrd.getText().toString();
+        iniciarSesion(str_usr,str_psswd);
     }
 
     private void iniciarSesion(String usuario, String password){
         Map<String, String> params = new HashMap();
         params.put("username", usuario);
         params.put("password", password);
-        JSONObject parametros = new JSONObject(params);
+        JSONObject parameters = new JSONObject(params);
         String login_url = "https://amstdb.herokuapp.com/db/nuevo-jwt";
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST, login_url, parametros,
+                Request.Method.POST, login_url, parameters,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -65,16 +66,8 @@ public class Login extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                alertDialog.setTitle("Alerta");
-                alertDialog.setMessage("Credenciales Incorrectas");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                Toast toast=Toast.makeText(getApplicationContext(),"Datos incorrectos",Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
         mQueue.add(request);
