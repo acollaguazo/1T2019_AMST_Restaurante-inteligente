@@ -31,4 +31,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // Dependencia agregada para implementar el gráfico de pastel (otras gráficas tambien se pueden usar) https://github.com/PhilJay/MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // implementacion libreria volley
+    implementation 'com.android.volley:volley:1.1.1'
 }
