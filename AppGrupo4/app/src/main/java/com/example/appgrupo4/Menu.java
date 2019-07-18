@@ -15,7 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.components.LegendEntry;
 
 import org.json.JSONObject;
 
@@ -27,8 +26,9 @@ public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private String token = "";
-    private static int numMesas =2;
+    public static int NUMMESAS =2;
     public static ArrayList<String> entries = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +42,18 @@ public class Menu extends AppCompatActivity {
 
     private void revisarSensores() {
         String url_temp;
-        for (int i = 0; i < numMesas; i++) {
+        for (int i = 0; i < NUMMESAS; i++) {
             url_temp = (String)("https://amstdb.herokuapp.com/db/mesa/"+(i+1));
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.GET, url_temp, null,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            System.out.println("----------------------------------------");
+                            System.out.println(response);
+                            System.out.println("----------------------------------------");
                             try {
-                                entries.add(response.getString(response.getString("Estado")));
+                                entries.add(response.getString("id")+"|"+response.getString("ubicacion")+"|"+response.getString("capacidad"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -73,9 +76,8 @@ public class Menu extends AppCompatActivity {
             };
             mQueue.add(request);
         }
-
-
     }
+
     public void next_disponibilidad(View view){
         Intent next = new Intent(this, Disponibilidad.class);
         startActivity(next);
