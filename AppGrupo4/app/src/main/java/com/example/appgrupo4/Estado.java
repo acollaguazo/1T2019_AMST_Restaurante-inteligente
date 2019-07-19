@@ -25,7 +25,7 @@ public class Estado extends AppCompatActivity {
     private PieChart pastel;
     private String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
     private static int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
-    private float[] porcentajes = new float[2]; // TEMPORAL
+    private float[] porcentajes = new float[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,10 @@ public class Estado extends AppCompatActivity {
         llenarScrolling(Menu.entries.size());
     }
 
-
     /**
      * METODO SOBREESCRITO: Toma la acción del boton de regresar del telefono y se encarga de llamar al método para eliminar TextView y regresar al menu
-     *
      * @param keyCode variable que viene por override
-     * @param event   evento que viene por override
+     * @param event evento que viene por override
      * @return retorno que viene por override
      */
     @Override
@@ -71,7 +69,7 @@ public class Estado extends AppCompatActivity {
      * @param id el ID que se asignará al TextView una vez creado
      */
     private void crearTextView(String data,int id){
-        View linearLayout = findViewById(R.id.LinearScroll);
+        View linearLayout = findViewById(R.id.LinearScrollEstado);
         TextView newTextView = new TextView(this);
         newTextView.setText(data);
         newTextView.setId(id);
@@ -84,18 +82,10 @@ public class Estado extends AppCompatActivity {
      * @param numeroDeMesas numero de mesas para saber cuantos TextView se crearon al iniciar esta actividad
      */
     private void vaciarScrolling(int numeroDeMesas){
+        View linearLayout = findViewById(R.id.LinearScrollEstado);
         for(int i = 0; i < numeroDeMesas; i++){
-            eliminarTextView(i);
+            ((LinearLayout) linearLayout).removeView((TextView)findViewById(i));
         }
-    }
-
-    /**
-     * Elimina un textView creado para presentar los datos de una mesa en el activity
-     * @param id id con el que se sabe que TextView eliminar
-     */
-    private void eliminarTextView(int id){
-        View linearLayout = findViewById(R.id.LinearScroll);
-        ((LinearLayout) linearLayout).removeView((TextView)findViewById(id));
     }
 
     /**

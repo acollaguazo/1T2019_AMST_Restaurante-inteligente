@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,73 +7,19 @@
     android:background="@drawable/gradient"
     tools:context=".Disponibilidad">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">  //CAMBIAR
+
     <LinearLayout
+        android:id="@+id/LinearScrollDisp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textLog"
-                android:layout_width="298dp"
-                android:layout_height="100dp"
-                android:fontFamily="cursive"
-                android:gravity="center"
-                android:text="DISPONIBILIDAD"
-                android:textColor="#FFEB3B"
-                android:textSize="36sp" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="78dp"
-                android:layout_weight="123"
-                android:background="#E71808"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="CHECK" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:text="   MESA_X"
-            android:textColor="#8BC34A"
-            android:textSize="30sp" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="248dp"
-            android:layout_height="176dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/llena" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:text="   MESA_Y"
-            android:textColor="#8BC34A"
-            android:textSize="30sp" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="251dp"
-            android:layout_height="162dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/vacia" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>

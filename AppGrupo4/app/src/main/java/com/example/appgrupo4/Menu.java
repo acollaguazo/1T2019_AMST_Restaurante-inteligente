@@ -34,6 +34,7 @@ public class Menu extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         Intent login = getIntent();
         this.token = (String)login.getExtras().get("token");
+        obtenerEstadoDeMesas(NUMMESAS);
     }
 
     public void obtenerEstadoDeMesas(int numeroDeMesas){
@@ -89,7 +90,6 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_disponibilidad(View view){
-        obtenerEstadoDeMesas(NUMMESAS);
         Intent next = new Intent(this, Disponibilidad.class);
         startActivity(next);
     }
@@ -99,8 +99,12 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_estado(View view){
-        obtenerEstadoDeMesas(NUMMESAS);
         Intent next = new Intent(this,Estado.class);
         startActivity(next);
+    }
+
+    public void next_salir(View view){
+        finishAffinity();
+        System.exit(0);
     }
 }
