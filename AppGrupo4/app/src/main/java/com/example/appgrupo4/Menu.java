@@ -1,13 +1,10 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,9 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +21,8 @@ public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private String token = "";
-    public static int NUMMESAS =2;
-    public static ArrayList<String> entries = new ArrayList<>();
+    public static int NUMMESAS =2; // NUMERO DE MESAS QUE HAY EN LA BASE DE DATOS
+    public static ArrayList<String> entries = new ArrayList<>(); // GUARDARA LA INFORMACION DE LA BASE DE DATOS EN FORMA DE QUE CADA MESA SE REPRESENTA COMO STRING
 
 
     @Override
@@ -40,6 +35,9 @@ public class Menu extends AppCompatActivity {
         revisarSensores();
     }
 
+    /**
+     * Metodo que se encarga de revisar los datos en la base de datos
+     */
     private void revisarSensores() {
         String url_temp;
         for (int i = 0; i < NUMMESAS; i++) {
@@ -78,11 +76,19 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+    /**
+     * avanzar a la clase Disponibilidad donde se representara cada mesa de manera grafica con todos sus componentes
+     * @param view
+     */
     public void next_disponibilidad(View view){
         Intent next = new Intent(this, Disponibilidad.class);
         startActivity(next);
     }
 
+    /**
+     * avanzar a la clase Estado donde se representara por medio de un grafico de pastel, el porcentaje de mesas ocupadas y disponibles
+     * @param view
+     */
     public void next_estado(View view){
         Intent next = new Intent(this,Estado.class);
         startActivity(next);

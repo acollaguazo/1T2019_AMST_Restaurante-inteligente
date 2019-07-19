@@ -30,6 +30,7 @@ public class Estado extends AppCompatActivity {
         setContentView(R.layout.activity_estado);
         pastel = (PieChart)findViewById(R.id.pieChart1);
         crearPastel();
+        // Aqui trato de representar los datos de la base de datos pero aun falta el estado de cada mesa ya que no se como acceder a ella
         for(int i = 0; i<Menu.NUMMESAS; i++){
             TextView tv = (TextView) findViewById(R.id.textView+i+1);
             tv.setText(Menu.entries.get(i));
@@ -38,6 +39,9 @@ public class Estado extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     */
     public void crearPastel(){
         pastel = (PieChart) customChart(pastel, Color.WHITE,2000);
         pastel.setHoleRadius(2);
@@ -46,6 +50,13 @@ public class Estado extends AppCompatActivity {
         pastel.setData(getPieData());
     }
 
+    /**
+     * Dara las caracteristicas a nuestro objeto Chart (PieChart)
+     * @param chart objeto tipo Chart al cual le seran dadas las caracteristicas
+     * @param backgroundColor color de fondo de el objeto
+     * @param animationTime tiempo de animacion para que se presente por complesto en milisegundos
+     * @return
+     */
     private Chart customChart(Chart chart, int backgroundColor, int animationTime){
         chart.getDescription().setTextSize(20);
         chart.getDescription().setText("");
@@ -56,7 +67,7 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     *
+     * Dara el formato y caracteristicas a las leyendas del objeto Chart (PieChart)
      * @param chart
      */
     private void customCharLegend(Chart chart){
