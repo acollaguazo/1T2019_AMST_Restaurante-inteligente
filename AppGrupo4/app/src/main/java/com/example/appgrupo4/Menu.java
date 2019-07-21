@@ -10,10 +10,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import org.json.JSONObject;
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,11 +21,9 @@ public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private String token = "";
-    public static int NUMMESAS = 5; // NUMERO DE MESAS QUE HAY EN LA BASE DE DATOS
-    private String urlEstadoMesas =  "https://amstdb.herokuapp.com/db/registroEstadoMesa/";
-    private String urlMesas =  "https://amstdb.herokuapp.com/db/mesa/";
-    public static ArrayList<String> entries = new ArrayList<>(); // GUARDARA LA INFORMACION DE LA BASE DE DATOS EN FORMA DE QUE CADA MESA SE REPRESENTA COMO STRING
-
+    private String urlEstados =  "https://amstdb.herokuapp.com/db/registroEstadoMesa";
+    private String urlMesas =  "https://amstdb.herokuapp.com/db/mesa";
+    public static HashMap<String,String[]> registros = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,41 +32,64 @@ public class Menu extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         Intent login = getIntent();
         this.token = (String)login.getExtras().get("token");
-        obtenerEstadoDeMesas(NUMMESAS);
-    }
-
-    public void obtenerEstadoDeMesas(int numeroDeMesas){
-        for(int i = 1; i <= numeroDeMesas; i++){
-            obtenerEstadoMesa(urlMesas,i);   ///////////// AQUI
-        }
+        obtenerEstadoMesa(urlMesas,urlEstados);
     }
 
     /**
-     * Se encarga de obtener datos de una mesa en la base de datos
-     * @param url Url de que representa el lugar donde esta la base de datos
-     * @param numero numero que representa una mesa en la base de datos
+     * Se encarga de obtener datos de las mesas que se encuantran en la base de datos
+     * @param urlMesa
+     * @param urlEstado
      */
-    private void obtenerEstadoMesa(String url,int numero) {
-        String url_temp;
-        url_temp = (String)(url+(numero));
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, url_temp, null,
-                new Response.Listener<JSONObject>() {
+    private void obtenerEstadoMesa(String urlMesa, final String urlEstado) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET, urlMesa, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        System.out.println("----------------------------------------");  // ELIMINAR DESPUES
-                        System.out.println(response);                                    // ELIMINAR DESPUES
-                        System.out.println("----------------------------------------");  // ELIMINAR DESPUES
-                        try {
-                            entries.add("             id: "+response.getString("id")+"               ubicacion: "+response.getString("ubicacion")+"               capacidad: "+response.getString("capacidad"));
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    public void onResponse(final JSONArray response) {
+                        for(int i = 0; i<response.length(); i++){
+                            try {
+                                String datos[] = new String[3];
+                                datos[0] = response.getJSONObject(i).getString("ubicacion");
+                                datos[1] = response.getJSONObject(i).getString("capacidad");
+                                registros.put(response.getJSONObject(i).getString("id"),datos);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
+                        JsonArrayRequest request = new JsonArrayRequest(
+                                Request.Method.GET, urlEstado, null,
+                                new Response.Listener<JSONArray>() {
+                                    @Override
+                                    public void onResponse(JSONArray response1) {
+                                        for(int i = 0; i<response1.length(); i++){
+                                            try {
+                                                String estado = response1.getJSONObject(i).getString("estado");
+                                                registros.get(response1.getJSONObject(i).getString("mesa"))[2] = estado;
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast toast=Toast.makeText(getApplicationContext(),"Sin datos",Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                            })
+                            {
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put("Authorization", "JWT " + token);
+                                    return params;
+                                }
+                            };
+                            mQueue.add(request);
                     }
                     }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("ERROR");
                         Toast toast=Toast.makeText(getApplicationContext(),"Sin datos",Toast.LENGTH_SHORT);
                         toast.show();
                     }
@@ -78,7 +99,6 @@ public class Menu extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Authorization", "JWT " + token);
-                System.out.println(token);
                 return params;
             }
         };
@@ -103,6 +123,10 @@ public class Menu extends AppCompatActivity {
         startActivity(next);
     }
 
+    /**
+     * Cierra la aplicacion por completo
+     * @param view
+     */
     public void next_salir(View view){
         finishAffinity();
         System.exit(0);

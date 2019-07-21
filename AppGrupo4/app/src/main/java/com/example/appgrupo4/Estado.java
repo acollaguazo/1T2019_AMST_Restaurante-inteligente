@@ -19,22 +19,24 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Estado extends AppCompatActivity {
 
     private PieChart pastel;
     private String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
     private static int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
-    private float[] porcentajes = new float[2];
+    private float[] porcentajes = new float[2]; // pos 0: ocupadas, pos 1: libres
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estado);
         pastel = (PieChart) findViewById(R.id.pieChart1);
-        calcularPorcentajeMesas(porcentajes);
+        calcularPorcentajeMesas(Menu.registros, porcentajes);
         crearPastel();
-        llenarScrolling(Menu.entries.size());
+        llenarScrolling(Menu.registros);
     }
 
     /**
@@ -46,7 +48,6 @@ public class Estado extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            vaciarScrolling(Menu.entries.size());
             super.onBackPressed();
             return true;
         }
@@ -54,25 +55,40 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     * Crea todos los TextView para representar los datos de mesas
-     * @param numeroDeMesas numero de mesas para saber cuantos TextView crear
+     *
+     * @param registros
      */
-    private void llenarScrolling(int numeroDeMesas) {
-        for (int i = 0; i < numeroDeMesas; i++) {
-            crearTextView((String) Menu.entries.get(i), i);
+    private void llenarScrolling(HashMap<String,String[]> registros) {
+        for (Map.Entry<String, String[]> entry : registros.entrySet()) {
+            String mesa = entry.getKey();
+            String ubicacion = entry.getValue()[0];
+            String capacidad = entry.getValue()[1];
+            String estado = entry.getValue()[2];
+            crearTextView(estado,capacidad,mesa);
         }
     }
 
     /**
-     * Crea un TextView para representar los datos de unna mesa en el activity
-     * @param data el contenido que tendrá eñ texTView
-     * @param id el ID que se asignará al TextView una vez creado
+     *
+     * @param estado
+     * @param capacidad
+     * @param id
      */
-    private void crearTextView(String data,int id){
+    private void crearTextView(String estado,String capacidad, String id){
         View linearLayout = findViewById(R.id.LinearScrollEstado);
         TextView newTextView = new TextView(this);
-        newTextView.setText(data);
-        newTextView.setId(id);
+        if(Integer.parseInt(id)<10)
+            id = "0"+id;
+        if(estado == null){
+            newTextView.setText("           "+id+"                       "+" Sin Dato"+"                      "+capacidad);
+        }
+        else if(estado.equals("DE")){
+            newTextView.setText("           "+id+"                       "+"    Libre   "+"                      "+capacidad);
+        }
+        else if(estado.equals("OC")){
+            newTextView.setText("           "+id+"                       "+"Ocupada"+"                      "+capacidad);
+        }
+        newTextView.setId(Integer.parseInt(id));
         newTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ((LinearLayout) linearLayout).addView(newTextView);
     }
@@ -91,9 +107,21 @@ public class Estado extends AppCompatActivity {
     /**
      * Calcula los porcentajes de mesas ocupadas y mesas disponible y almacena estos datos en el arreglo enviado.
      */
-    private void calcularPorcentajeMesas(float[] porcentajes){   // aun hay que programar esto. esta como provicional para mostrar datos
-        porcentajes[0] = 63;
-        porcentajes[1] = 37;
+    private void calcularPorcentajeMesas(HashMap<String,String[]> registros, float[] porcentajes){
+        int total = registros.size();
+        int ocupados = 0;
+        for (Map.Entry<String, String[]> entry : registros.entrySet()) {
+            if(entry.getValue()[2] != null){
+                if(entry.getValue()[2].equals("OC")){
+                    ocupados++;
+                }
+            } else {
+                total--;
+            }
+        }
+        porcentajes[0] = (ocupados*100)/total; // ocupadas
+        porcentajes[1] = 100 - porcentajes[0]; // libres
+
     }
 
     /**
