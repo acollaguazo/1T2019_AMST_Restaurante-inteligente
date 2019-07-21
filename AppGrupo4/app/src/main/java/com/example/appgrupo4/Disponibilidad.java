@@ -1,10 +1,13 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
 import android.os.Bundle;
 import android.util.LayoutDirection;
 import android.util.TypedValue;
@@ -81,10 +84,9 @@ public class Disponibilidad extends AppCompatActivity {
         TextView TVid = new TextView(this);
         TVid.setText("MESA: "+id);
         TVid.setGravity(Gravity.CENTER);
-        // Set the TextView font and font style
-        TVid.setTypeface(Typeface.MONOSPACE, Typeface.NORMAL);
+        TVid.setTypeface(Typeface.MONOSPACE, Typeface.NORMAL); // Set the TextView font and font style
         TVid.setTextColor(Color.BLACK);
-        TVid.setPadding(15,15,15,10);
+        TVid.setPadding(0,15,0,10);
         TVid.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20); //dp
         //setting  TextView capacidad
         TextView TVCapacidad = new TextView(this);
@@ -119,6 +121,9 @@ public class Disponibilidad extends AppCompatActivity {
         //SETTING LINEARLAYOUT Horizontal
         LinearLayout layoutHorizontal = new LinearLayout(this);
         layoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+        Drawable d = getResources().getDrawable(R.drawable.spacer_medium);
+        layoutHorizontal.setDividerDrawable(d);
+        layoutHorizontal.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         layoutHorizontal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         layoutHorizontal.setGravity(Gravity.CENTER);
         layoutHorizontal.setBackgroundColor(Color.WHITE);

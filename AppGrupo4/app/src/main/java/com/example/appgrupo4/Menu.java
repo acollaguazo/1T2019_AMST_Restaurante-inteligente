@@ -110,6 +110,7 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_disponibilidad(View view){
+        obtenerEstadoMesa(urlMesas,urlEstados);
         Intent next = new Intent(this, Disponibilidad.class);
         startActivity(next);
     }
@@ -119,6 +120,7 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_estado(View view){
+        obtenerEstadoMesa(urlMesas,urlEstados);
         Intent next = new Intent(this,Estado.class);
         startActivity(next);
     }

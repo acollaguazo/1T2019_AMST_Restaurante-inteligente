@@ -80,10 +80,10 @@ public class Estado extends AppCompatActivity {
         if(Integer.parseInt(id)<10)
             id = "0"+id;
         if(estado == null){
-            newTextView.setText("           "+id+"                       "+" Sin Dato"+"                      "+capacidad);
+            newTextView.setText("           "+id+"                       "+"Sin Dato "+"                      "+capacidad);
         }
         else if(estado.equals("DE")){
-            newTextView.setText("           "+id+"                       "+"    Libre   "+"                      "+capacidad);
+            newTextView.setText("           "+id+"                       "+"   Libre    "+"                      "+capacidad);
         }
         else if(estado.equals("OC")){
             newTextView.setText("           "+id+"                       "+"Ocupada"+"                      "+capacidad);
