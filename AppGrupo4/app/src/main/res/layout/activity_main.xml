@@ -19,7 +19,7 @@
             android:id="@+id/button"
             android:layout_width="305dp"
             android:layout_height="51dp"
-            android:onClick="Siguiente_Login"
+            android:onClick="siguienteLogin"
             android:text="@string/BotonIniciar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

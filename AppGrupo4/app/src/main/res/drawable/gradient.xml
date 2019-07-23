@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <gradient
-        android:startColor="#3D5069"
-        android:centerColor="#2A3c58"
-        android:endColor="#192943"
-        android:angle="0"/>
-    <corners
-        android:radius="0dp"/>
-</shape>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="5000"
+        android:drawable="@drawable/gradient_start"/>
+    <item android:duration="5000"
+        android:drawable="@drawable/gradient_center"/>
+    <item android:duration="5000"
+        android:drawable="@drawable/gradient_end"/>
+
+</animation-list>

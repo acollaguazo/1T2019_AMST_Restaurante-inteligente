@@ -3,4 +3,22 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorTransparent">#00FFFFFF</color>
+
+    <color name="colorFlashScreen">#007065</color>
+
+    <color name="colorGradientStart">#00A79D</color>
+    <color name="colorGradientCenter">#00A79D</color>
+    <color name="colorGradientEnd">#00A79D</color>
+
+    <color name="colorGradientStart1">#A8C256</color>
+    <color name="colorGradientCenter1">#A8C256</color>
+    <color name="colorGradientEnd1">#A8C256</color>
+
+    <color name="colorGradientStart2">#3E92CC</color>
+    <color name="colorGradientCenter2">#3E92CC</color>
+    <color name="colorGradientEnd2">#3E92CC</color>
+
+
 </resources>

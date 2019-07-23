@@ -1,16 +1,13 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import org.json.JSONObject;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +28,11 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        LinearLayout constr =findViewById(R.id.root_layout);
+        AnimationDrawable animacion= (AnimationDrawable) constr.getBackground();
+        animacion.setEnterFadeDuration(2000);
+        animacion.setExitFadeDuration(4000);
+        animacion.start();
         mQueue = Volley.newRequestQueue(this);
     }
 
@@ -53,12 +55,11 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println(response);
                         try {
                             token = response.getString("token");
-                            Intent menuPrincipal = new Intent(getBaseContext(), Menu.class);
-                            menuPrincipal.putExtra("token", token);
-                            startActivity(menuPrincipal);
+                            Intent toMenuPrincipal = new Intent(getBaseContext(), Menu.class);
+                            toMenuPrincipal.putExtra("token", token);
+                            startActivity(toMenuPrincipal);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -66,11 +67,10 @@ public class Login extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast=Toast.makeText(getApplicationContext(),"Datos incorrectos",Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getApplicationContext(),"Datos incorrectos, intente nuevamente.",Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
         mQueue.add(request);
     }
-
 }

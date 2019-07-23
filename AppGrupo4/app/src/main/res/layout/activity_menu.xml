@@ -4,65 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="#F1c981"
     tools:context=".Menu">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/tele" />
-
-        <TextView
-            android:id="@+id/textLog"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:onClick="next_disponibilidad"
-            android:text="@string/BotonDisponibilidad"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:onClick="next_estado"
-            android:text="@string/BotonEstadoTanque"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:onClick="next_salir"
-            android:text="@string/BotonSalir"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="aldrich"
+                android:gravity="center"
+                android:text="MENÚ"
+                android:textColor="#000000"
+                android:textSize="50sp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="144dp"
+                android:layout_height="213dp"
+                android:layout_gravity="center"
+                android:contentDescription="antena"
+                app:srcCompat="@drawable/tele" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_button_menu"
+                android:gravity="center"
+                android:onClick="next_disponibilidad"
+                android:text="@string/BotonDisponibilidad"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_button_menu"
+                android:gravity="center"
+                android:onClick="next_estado"
+                android:text="@string/BotonEstadoTanque"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_button_menu"
+                android:gravity="center"
+                android:text="@string/BotonSalir"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="124dp"
+                android:layout_height="101dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_button_menu"
+                android:backgroundTint="#A5A5A5"
+                android:gravity="center"
+                android:text="Bateria"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
