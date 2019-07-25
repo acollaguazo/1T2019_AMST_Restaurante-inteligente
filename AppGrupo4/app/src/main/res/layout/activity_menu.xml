@@ -77,6 +77,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_button_menu"
                 android:gravity="center"
+                android:onClick="next_salir"
                 android:text="@string/BotonSalir"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />

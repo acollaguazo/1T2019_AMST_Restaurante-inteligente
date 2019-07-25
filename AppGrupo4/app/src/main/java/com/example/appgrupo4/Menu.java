@@ -130,7 +130,7 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_salir(View view){
-        finishAffinity();
-        System.exit(0);
+        Intent next = new Intent(this,Login.class);
+        startActivity(next);
     }
 }
