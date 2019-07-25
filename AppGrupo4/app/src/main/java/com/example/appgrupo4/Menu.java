@@ -133,4 +133,8 @@ public class Menu extends AppCompatActivity {
         Intent next = new Intent(this,Login.class);
         startActivity(next);
     }
+    public void next_bateria(View view){
+        Intent next = new Intent(this,EstadoBateria.class);
+        startActivity(next);
+    }
 }

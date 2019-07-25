@@ -92,6 +92,7 @@
                 android:background="@drawable/custom_button_menu"
                 android:backgroundTint="#A5A5A5"
                 android:gravity="center"
+                android:onClick="next_bateria"
                 android:text="Bateria"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
