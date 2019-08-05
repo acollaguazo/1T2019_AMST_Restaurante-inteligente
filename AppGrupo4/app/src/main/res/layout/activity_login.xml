@@ -32,14 +32,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textViewSmartTable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="aldrich"
+                    android:fontFamily="casual"
                     android:gravity="center"
                     android:text="SmarTable"
                     android:textColor="#090808"
-                    android:textSize="60sp" />
+                    android:textSize="60sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imageTable"
