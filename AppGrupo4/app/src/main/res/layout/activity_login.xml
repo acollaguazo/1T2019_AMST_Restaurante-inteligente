@@ -63,7 +63,8 @@
                     android:inputType="text"
                     android:textColor="#FAFAFA"
                     android:textColorHint="#FAFAFA"
-                    android:importantForAutofill="no" />
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <EditText
                     android:id="@+id/txtPassword"
@@ -80,7 +81,8 @@
                     android:inputType="textPassword"
                     android:textColor="#FCFBFB"
                     android:textColorHint="#FFFFFF"
-                    android:importantForAutofill="no" />
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
 
                 <Button
                     android:layout_width="149dp"

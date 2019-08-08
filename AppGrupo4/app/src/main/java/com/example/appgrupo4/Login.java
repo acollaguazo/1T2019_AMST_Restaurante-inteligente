@@ -53,6 +53,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion(str_usuario,str_contrasena);
     }
 
+    @SuppressWarnings("unchecked")
     private void iniciarSesion(String usuario, String password){
 
         Map<String, String> parametros = new HashMap();

@@ -1,6 +1,8 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("SameParameterValue")
 public class Estado extends AppCompatActivity {
 
     private PieChart pastel;
@@ -58,6 +61,7 @@ public class Estado extends AppCompatActivity {
      *
      * @param registros
      */
+    @SuppressWarnings("unused")
     private void llenarScrolling(HashMap<String,String[]> registros) {
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
             String mesa = entry.getKey();
@@ -74,13 +78,14 @@ public class Estado extends AppCompatActivity {
      * @param capacidad
      * @param id
      */
-    private void crearTextView(String estado,String capacidad, String id){
+    @SuppressLint("SetTextI18n")
+    private void crearTextView(String estado, String capacidad, String id){
         View linearLayout = findViewById(R.id.LinearScrollEstado);
         TextView newTextView = new TextView(this);
         if(Integer.parseInt(id)<10)
             id = "0"+id;
         if(estado == null){
-            newTextView.setText("           "+id+"                       "+"Sin Dato "+"                      "+capacidad);
+            newTextView.setText("           "+id+"                       "+"Sin Datos "+"                      "+capacidad);
         }
         else if(estado.equals("DE")){
             newTextView.setText("           "+id+"                       "+"   Libre    "+"                      "+capacidad);
@@ -97,6 +102,7 @@ public class Estado extends AppCompatActivity {
      * Elimina todos los TextView que representan los datos de mesas
      * @param numeroDeMesas numero de mesas para saber cuantos TextView se crearon al iniciar esta actividad
      */
+    @SuppressWarnings("unused")
     private void vaciarScrolling(int numeroDeMesas){
         View linearLayout = findViewById(R.id.LinearScrollEstado);
         for(int i = 0; i < numeroDeMesas; i++){

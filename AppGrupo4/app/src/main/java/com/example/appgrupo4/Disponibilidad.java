@@ -2,6 +2,7 @@ package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -57,6 +58,7 @@ public class Disponibilidad extends AppCompatActivity {
      * llena el Scrolling
      * @param registros
      */
+    @SuppressWarnings("unused")
     private void llenarScrolling(HashMap<String,String[]> registros){
         View linearLayout = findViewById(R.id.LinearScrollDisponibilidad);
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
@@ -75,6 +77,7 @@ public class Disponibilidad extends AppCompatActivity {
      * @param estado
      * @param L
      */
+    @SuppressLint("SetTextI18n")
     private void crearLinearLayoutHorizontalParaMesa(String id, String capacidad, String estado, View L){
         //setting  TextView TVid
         TextView TVid = new TextView(this);
