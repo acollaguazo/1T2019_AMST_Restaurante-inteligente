@@ -33,7 +33,7 @@ public class Estado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estado);
-        pastel = (PieChart) findViewById(R.id.pieChart1);
+        pastel = (PieChart) findViewById(R.id.pieChartGraficaEstadoMesas);
         calcularPorcentajeMesas(Menu.registros, porcentajes);
         crearPastel();
         llenarScrolling(Menu.registros);

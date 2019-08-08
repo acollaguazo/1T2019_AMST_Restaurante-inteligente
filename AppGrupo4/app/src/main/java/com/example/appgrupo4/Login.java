@@ -2,7 +2,6 @@ package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -35,7 +34,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LinearLayout constr =findViewById(R.id.root_layout);
+        LinearLayout constr =findViewById(R.id.root_layoutLogin);
         AnimationDrawable animacion= (AnimationDrawable) constr.getBackground();
         animacion.setEnterFadeDuration(2000);
         animacion.setExitFadeDuration(4000);

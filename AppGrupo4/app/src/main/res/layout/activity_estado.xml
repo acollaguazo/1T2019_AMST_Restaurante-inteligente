@@ -10,34 +10,34 @@
 
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart1"
+        android:id="@+id/pieChartGraficaEstadoMesas"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSmartTable"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTituloEstadoMesas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewSmartTable"
+        android:id="@+id/textViewTituloEstadoMesas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="29dp"
-        android:text="# MESA     ESTADO    CAPACIDAD"
+        android:text="@string/TituloEstadoMesa"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewListaEstadosMesas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pieChart1" />
+        app:layout_constraintTop_toBottomOf="@+id/pieChartGraficaEstadoMesas" />
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/scrollViewListaEstadosMesas"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="28dp"
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSmartTable">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTituloEstadoMesas">
 
         <LinearLayout
             android:layout_width="match_parent"

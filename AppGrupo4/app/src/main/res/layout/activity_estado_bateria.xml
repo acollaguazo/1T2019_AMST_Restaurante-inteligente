@@ -9,24 +9,25 @@
     tools:context=".EstadoBateria">
 
     <TextView
-        android:id="@+id/textBateria"
+        android:id="@+id/textEstadoActualBateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="151dp"
-        android:text="Estado Actual"
+        android:text="@string/TituloEstadoActualBateria"
         android:textSize="36sp" />
 
     <ImageView
-        android:id="@+id/imageBateria"
+        android:id="@+id/imageEstadoActualBateria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/imagenestadoactual"
         app:srcCompat="@drawable/b100" />
 
     <TextView
-        android:id="@+id/textBstatus"
+        android:id="@+id/textViewPorcentajeBateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="186dp"
-        android:text="100%"
+        android:text="@string/PorcentajeVisualBateria"
         android:textSize="30sp" />
 </LinearLayout>

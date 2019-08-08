@@ -1,15 +1,11 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableContainer;
 import android.os.Bundle;
-import android.util.LayoutDirection;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -51,7 +47,7 @@ public class Disponibilidad extends AppCompatActivity {
      * @param cantidadMesas cantidad de mesas existentes
      */
     private void vaciarScrolling(int cantidadMesas){
-        View linearLayout = findViewById(R.id.LinearScrollDisp);
+        View linearLayout = findViewById(R.id.LinearScrollDisponibilidad);
         for(int i = 0; i < cantidadMesas; i++){
             ((LinearLayout) linearLayout).removeView((LinearLayout)findViewById(i));
         }
@@ -62,7 +58,7 @@ public class Disponibilidad extends AppCompatActivity {
      * @param registros
      */
     private void llenarScrolling(HashMap<String,String[]> registros){
-        View linearLayout = findViewById(R.id.LinearScrollDisp);
+        View linearLayout = findViewById(R.id.LinearScrollDisponibilidad);
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
             String mesa = entry.getKey();
             String ubicacion = entry.getValue()[0];

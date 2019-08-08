@@ -11,4 +11,17 @@
     <string name="BotonDisponibilidad">Ver mesas</string>
     <string name="BotonEstadoTanque">Ver el estado del restaurante</string>
     <string name="BotonSalir">Cerrar Sesión</string>
+    <string name="menu">MENÚ</string>
+    <string name="antena">antena</string>
+    <string name="bateria">Bateria</string>
+    <string name="SplashLogo">SplashLogo</string>
+    <string name="PorcentajeBateria">PorcentajeBateria</string>
+    <string name="PorcentajeVisualBateria">100%</string>
+    <string name="TituloEstadoActualBateria">Estado Actual</string>
+    <string name="imagenestadoactual">ImagenEstadoActual</string>
+    <string name="TituloEstadoMesa"># MESA ESTADO CAPACIDAD</string>
+    <string name="TituloDisponibilidad">DISPONIBILIDAD</string>
+    <string name="BotonIngresar">INGRESAR</string>
+    <string name="TituloLoginSmarTable">SmarTable</string>
+    <string name="ImagenTableLogin">TableLogin</string>
 </resources>

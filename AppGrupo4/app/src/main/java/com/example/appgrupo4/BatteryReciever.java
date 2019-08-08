@@ -13,9 +13,9 @@ class BatteryReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        TextView statusLabel = ((EstadoBateria)context).findViewById(R.id.textBateria);
-        TextView percentageLabel = ((EstadoBateria)context).findViewById(R.id.textBstatus);
-        ImageView batteryImage = ((EstadoBateria)context).findViewById(R.id.imageBateria);
+        TextView statusLabel = ((EstadoBateria)context).findViewById(R.id.textEstadoActualBateria);
+        TextView percentageLabel = ((EstadoBateria)context).findViewById(R.id.textViewPorcentajeBateria);
+        ImageView batteryImage = ((EstadoBateria)context).findViewById(R.id.imageEstadoActualBateria);
 
         String action = intent.getAction();
 

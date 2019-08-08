@@ -8,7 +8,7 @@
     tools:context=".Login">
 
     <LinearLayout
-        android:id="@+id/root_layout"
+        android:id="@+id/root_layoutLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gradient"
@@ -21,6 +21,7 @@
 
 
         <ScrollView
+            android:id="@+id/ScrollViewLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -32,12 +33,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewSmartTable"
+                    android:id="@+id/textViewTituloEstadoMesas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="casual"
                     android:gravity="center"
-                    android:text="SmarTable"
+                    android:text="@string/TituloLoginSmarTable"
                     android:textColor="#090808"
                     android:textSize="60sp"
                     android:textStyle="bold" />
@@ -47,7 +48,7 @@
                     android:layout_width="323dp"
                     android:layout_height="177dp"
                     android:adjustViewBounds="false"
-                    android:contentDescription="TableLogin"
+                    android:contentDescription="@string/ImagenTableLogin"
                     app:srcCompat="@drawable/mesa" />
 
                 <EditText
@@ -56,13 +57,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="#40009688"
-                    android:drawableLeft="@drawable/ic_action_user"
+                    android:drawableStart="@drawable/ic_action_user"
                     android:fontFamily="aldrich"
                     android:gravity="center"
                     android:hint="@string/txtUsuario"
                     android:inputType="text"
                     android:textColor="#FAFAFA"
-                    android:textColorHint="#FAFAFA" />
+                    android:textColorHint="#FAFAFA"
+                    android:importantForAutofill="no" />
 
                 <EditText
                     android:id="@+id/txtPassword"
@@ -72,13 +74,14 @@
                     android:layout_marginTop="15dip"
                     android:layout_marginBottom="30dip"
                     android:background="#40009688"
-                    android:drawableLeft="@drawable/ic_action_pass"
+                    android:drawableStart="@drawable/ic_action_pass"
                     android:fontFamily="aldrich"
                     android:gravity="center"
                     android:hint="@string/txtClave"
                     android:inputType="textPassword"
                     android:textColor="#FCFBFB"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:importantForAutofill="no" />
 
                 <Button
                     android:id="@+id/btnLogin"
@@ -91,7 +94,7 @@
                     android:onClick="irMenuPrincipal"
                     android:paddingLeft="15dip"
                     android:paddingRight="15dip"
-                    android:text="INGRESAR"
+                    android:text="@string/BotonIngresar"
                     android:textColor="#030303" />
             </LinearLayout>
         </ScrollView>

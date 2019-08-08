@@ -17,31 +17,26 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textLog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
                 android:id="@+id/textMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="aldrich"
                 android:gravity="center"
-                android:text="MENÚ"
+                android:text="@string/menu"
                 android:textColor="#000000"
                 android:textSize="50sp" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewLogoMenu"
                 android:layout_width="144dp"
                 android:layout_height="213dp"
                 android:layout_gravity="center"
-                android:contentDescription="antena"
+                android:contentDescription="@string/antena"
                 app:srcCompat="@drawable/tele" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonVerMesas"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -55,7 +50,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonVerEstadoRestaurante"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -69,7 +64,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonCerrarSesion"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -83,7 +78,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/buttonBateria"
                 android:layout_width="124dp"
                 android:layout_height="101dp"
                 android:layout_gravity="center"
@@ -93,7 +88,7 @@
                 android:backgroundTint="#A5A5A5"
                 android:gravity="center"
                 android:onClick="next_bateria"
-                android:text="Bateria"
+                android:text="@string/bateria"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
         </LinearLayout>
