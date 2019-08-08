@@ -3,9 +3,14 @@ package com.example.appgrupo4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -38,6 +43,8 @@ public class Login extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
     }
 
+
+
     public void irMenuPrincipal(View v){
         final EditText usr = (EditText) findViewById(R.id.txtUsuario);
         final EditText psswrd = (EditText) findViewById(R.id.txtPassword);
@@ -47,6 +54,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void iniciarSesion(String usuario, String password){
+
+
         Map<String, String> params = new HashMap();
         params.put("username", usuario);
         params.put("password", password);
@@ -67,12 +76,43 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast toast=Toast.makeText(getApplicationContext(),"Datos incorrectos, intente nuevamente.",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        ConnectivityManager gestorDeConexion = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo infoDeRed = gestorDeConexion .getActiveNetworkInfo();
+                        boolean connected = infoDeRed != null && infoDeRed.isAvailable() && infoDeRed.isConnected();
+                        if(!connected) {
+                            Toast advertencia = Toast.makeText(getApplicationContext(),"Sin acceso a internet",Toast.LENGTH_SHORT);
+                            advertencia.show();
+                        } else {
+                            Toast advertencia = Toast.makeText(getApplicationContext(), "Datos incorrectos, intente nuevamente", Toast.LENGTH_SHORT);
+                            advertencia.show();
+                        }
+                    }
+                });
         mQueue.add(request);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            }, 1500);
+       //     super.onBackPressed();
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
+
+
+
+
