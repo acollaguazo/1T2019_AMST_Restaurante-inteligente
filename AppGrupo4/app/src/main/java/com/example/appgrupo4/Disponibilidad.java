@@ -125,7 +125,7 @@ public class Disponibilidad extends AppCompatActivity {
         layoutHorizontal.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         layoutHorizontal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         layoutHorizontal.setGravity(Gravity.CENTER);
-        layoutHorizontal.setBackgroundColor(Color.WHITE);
+        //layoutHorizontal.setBackgroundColor(Color.WHITE);
         layoutHorizontal.addView(imgEstado);
         layoutHorizontal.addView(linearLayoutVertical);
         ((LinearLayout) L).addView(layoutHorizontal);

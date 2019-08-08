@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1c981"
-    tools:context=".Menu"
-    tools:ignore="Overdraw">
+    tools:context=".Menu">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,32 +13,97 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:fontFamily="aldrich"
+                android:fontFamily="@font/aldrich"
                 android:gravity="center"
-                android:text="@string/menu"
+                android:text="MENÚ"
                 android:textColor="#000000"
                 android:textSize="50sp" />
 
-            <ImageView
-                android:layout_width="144dp"
-                android:layout_height="213dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/antena"
-                app:srcCompat="@drawable/tele" />
+            <LinearLayout
+                android:id="@+id/lyResta"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="213dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Restaurante"
+                        android:textColor="#050505"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Platos del Sol"
+                        android:textColor="#2B2121"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Encargado"
+                        android:textColor="#050505"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/txtEncargado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Marcos Pincay"
+                        android:textColor="#2B2121"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="173dp"
+                        android:layout_height="190dp"
+                        app:srcCompat="@drawable/resta2" />
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
+                android:id="@+id/button2"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/custom_button_menu"
                 android:gravity="center"
                 android:onClick="next_disponibilidad"
@@ -48,11 +112,12 @@
                 android:textSize="24sp" />
 
             <Button
+                android:id="@+id/button3"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/custom_button_menu"
                 android:gravity="center"
                 android:onClick="next_estado"
@@ -61,6 +126,7 @@
                 android:textSize="24sp" />
 
             <Button
+                android:id="@+id/button4"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -74,6 +140,7 @@
                 android:textSize="24sp" />
 
             <Button
+                android:id="@+id/button5"
                 android:layout_width="124dp"
                 android:layout_height="101dp"
                 android:layout_gravity="center"
@@ -83,7 +150,7 @@
                 android:backgroundTint="#A5A5A5"
                 android:gravity="center"
                 android:onClick="next_bateria"
-                android:text="@string/bateria"
+                android:text="Bateria"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
         </LinearLayout>
