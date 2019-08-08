@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import com.android.volley.AuthFailureError;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,14 +16,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private String token = "";
-    private String urlEstados =  "https://amstdb.herokuapp.com/db/registroEstadoMesa";
-    private String urlMesas =  "https://amstdb.herokuapp.com/db/mesa";
-    public static HashMap<String,String[]> registros = new HashMap<>();
+    private final String urlEstados =  "https://amstdb.herokuapp.com/db/registroEstadoMesa";
+    private final String urlMesas =  "https://amstdb.herokuapp.com/db/mesa";
+    public static final HashMap<String,String[]> registros = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         mQueue = Volley.newRequestQueue(this);
         Intent login = getIntent();
-        this.token = (String)login.getExtras().get("token");
+        this.token = (String) Objects.requireNonNull(login.getExtras()).get("token");
         obtenerEstadoMesa(urlMesas,urlEstados);
     }
 
@@ -48,7 +49,7 @@ public class Menu extends AppCompatActivity {
                     public void onResponse(final JSONArray response) {
                         for(int i = 0; i<response.length(); i++){
                             try {
-                                String datos[] = new String[3];
+                                @SuppressWarnings("CStyleArrayDeclaration") String datos[] = new String[3];
                                 datos[0] = response.getJSONObject(i).getString("ubicacion");
                                 datos[1] = response.getJSONObject(i).getString("capacidad");
                                 registros.put(response.getJSONObject(i).getString("id"),datos);
@@ -64,7 +65,7 @@ public class Menu extends AppCompatActivity {
                                         for(int i = 0; i<response1.length(); i++){
                                             try {
                                                 String estado = response1.getJSONObject(i).getString("estado");
-                                                registros.get(response1.getJSONObject(i).getString("mesa"))[2] = estado;
+                                                Objects.requireNonNull(registros.get(response1.getJSONObject(i).getString("mesa")))[2] = estado;
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
@@ -79,10 +80,10 @@ public class Menu extends AppCompatActivity {
                             })
                             {
                                 @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put("Authorization", "JWT " + token);
-                                    return params;
+                                public Map<String, String> getHeaders() {
+                                    Map<String, String> parametros = new HashMap<>();
+                                    parametros.put("Authorization", "JWT " + token);
+                                    return parametros;
                                 }
                             };
                             mQueue.add(request);
@@ -96,10 +97,10 @@ public class Menu extends AppCompatActivity {
                 })
         {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Authorization", "JWT " + token);
-                return params;
+            public Map<String, String> getHeaders() {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("Authorization", "JWT " + token);
+                return parametros;
             }
         };
         mQueue.add(request);
@@ -111,8 +112,8 @@ public class Menu extends AppCompatActivity {
      */
     public void next_disponibilidad(View view){
         obtenerEstadoMesa(urlMesas,urlEstados);
-        Intent next = new Intent(this, Disponibilidad.class);
-        startActivity(next);
+        Intent siguiente = new Intent(this, Disponibilidad.class);
+        startActivity(siguiente);
     }
 
     /**
@@ -121,8 +122,8 @@ public class Menu extends AppCompatActivity {
      */
     public void next_estado(View view){
         obtenerEstadoMesa(urlMesas,urlEstados);
-        Intent next = new Intent(this,Estado.class);
-        startActivity(next);
+        Intent siguiente = new Intent(this,Estado.class);
+        startActivity(siguiente);
     }
 
     /**
@@ -130,11 +131,11 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_salir(View view){
-        Intent next = new Intent(this,Login.class);
-        startActivity(next);
+        Intent siguiente = new Intent(this,Login.class);
+        startActivity(siguiente);
     }
     public void next_bateria(View view){
-        Intent next = new Intent(this,EstadoBateria.class);
-        startActivity(next);
+        Intent siguiente = new Intent(this,EstadoBateria.class);
+        startActivity(siguiente);
     }
 }

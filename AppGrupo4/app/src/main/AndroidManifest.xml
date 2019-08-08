@@ -12,15 +12,16 @@
         android:label="FasTable"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".EstadoBateria"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity
+            android:name=".EstadoBateria"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".Estado" />
         <activity android:name=".Disponibilidad" />
         <activity android:name=".Menu" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity"
+        <activity android:name=".LogoInicial"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

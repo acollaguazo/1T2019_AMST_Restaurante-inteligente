@@ -25,15 +25,15 @@ import java.util.Map;
 public class Estado extends AppCompatActivity {
 
     private PieChart pastel;
-    private String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
-    private static int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
-    private float[] porcentajes = new float[2]; // pos 0: ocupadas, pos 1: libres
+    private final String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
+    private static final int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
+    private final float[] porcentajes = new float[2]; // pos 0: ocupadas, pos 1: libres
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estado);
-        pastel = (PieChart) findViewById(R.id.pieChartGraficaEstadoMesas);
+        pastel = findViewById(R.id.pieChartGraficaEstadoMesas);
         calcularPorcentajeMesas(Menu.registros, porcentajes);
         crearPastel();
         llenarScrolling(Menu.registros);
@@ -100,7 +100,7 @@ public class Estado extends AppCompatActivity {
     private void vaciarScrolling(int numeroDeMesas){
         View linearLayout = findViewById(R.id.LinearScrollEstado);
         for(int i = 0; i < numeroDeMesas; i++){
-            ((LinearLayout) linearLayout).removeView((TextView)findViewById(i));
+            ((LinearLayout) linearLayout).removeView(findViewById(i));
         }
     }
 
@@ -127,8 +127,8 @@ public class Estado extends AppCompatActivity {
     /**
      * Crea el gráfico de pastel
      */
-    public void crearPastel(){
-        pastel = (PieChart) customChart(pastel, Color.WHITE,2000);
+    private void crearPastel(){
+        customChart(pastel, Color.WHITE, 2000);
         pastel.setHoleRadius(2);
         pastel.setHoleColor(Color.WHITE);
         pastel.setTransparentCircleRadius(6);
@@ -142,13 +142,12 @@ public class Estado extends AppCompatActivity {
      * @param animationTime tiempo de animacion para que se presente por complesto en milisegundos
      * @return el Chart que estamos modificando
      */
-    private Chart customChart(Chart chart, int backgroundColor, int animationTime){
+    private void customChart(Chart chart, int backgroundColor, int animationTime){
         chart.getDescription().setTextSize(20);
         chart.getDescription().setText("");
         chart.setBackgroundColor(backgroundColor);
         chart.animateY(animationTime);
         customCharLegend(chart);
-        return chart;
     }
 
     /**

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".MainActivity">
+    tools:context=".LogoInicial">
 
     <LinearLayout
         android:id="@+id/root_layoutLogin"
@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/SplashLogo"
             android:layout_width="263dp"
             android:layout_height="197dp"
             android:src="@drawable/spashimagen"

@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
@@ -34,8 +35,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LinearLayout constr =findViewById(R.id.root_layoutLogin);
-        AnimationDrawable animacion= (AnimationDrawable) constr.getBackground();
+        LinearLayout fondoanimado =findViewById(R.id.root_layoutLogin);
+        AnimationDrawable animacion= (AnimationDrawable) fondoanimado.getBackground();
         animacion.setEnterFadeDuration(2000);
         animacion.setExitFadeDuration(4000);
         animacion.start();
@@ -45,20 +46,19 @@ public class Login extends AppCompatActivity {
 
 
     public void irMenuPrincipal(View v){
-        final EditText usr = (EditText) findViewById(R.id.txtUsuario);
-        final EditText psswrd = (EditText) findViewById(R.id.txtPassword);
-        String str_usr = usr.getText().toString();
-        String str_psswd = psswrd.getText().toString();
-        iniciarSesion(str_usr,str_psswd);
+        final EditText EditTextUsuario = findViewById(R.id.txtUsuario);
+        final EditText EditTextContrasena = findViewById(R.id.txtPassword);
+        String str_usuario = EditTextUsuario.getText().toString();
+        String str_contrasena = EditTextContrasena.getText().toString();
+        iniciarSesion(str_usuario,str_contrasena);
     }
 
     private void iniciarSesion(String usuario, String password){
 
-
-        Map<String, String> params = new HashMap();
-        params.put("username", usuario);
-        params.put("password", password);
-        JSONObject parameters = new JSONObject(params);
+        Map<String, String> parametros = new HashMap();
+        parametros.put("username", usuario);
+        parametros.put("password", password);
+        JSONObject parameters = new JSONObject(parametros);
         String login_url = "https://amstdb.herokuapp.com/db/nuevo-jwt";
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST, login_url, parameters,
@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         ConnectivityManager gestorDeConexion = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo infoDeRed = gestorDeConexion .getActiveNetworkInfo();
+                        NetworkInfo infoDeRed = Objects.requireNonNull(gestorDeConexion).getActiveNetworkInfo();
                         boolean connected = infoDeRed != null && infoDeRed.isAvailable() && infoDeRed.isConnected();
                         if(!connected) {
                             Toast advertencia = Toast.makeText(getApplicationContext(),"Sin acceso a internet",Toast.LENGTH_SHORT);
@@ -96,8 +96,8 @@ public class Login extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent intent = new Intent(Login.this, MainActivity.class);
-            startActivity(intent);
+            Intent siguiente = new Intent(Login.this, LogoInicial.class);
+            startActivity(siguiente);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

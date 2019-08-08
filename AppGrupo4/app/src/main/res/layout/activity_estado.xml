@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FFEECF"
     android:orientation="vertical"
-    tools:context=".Estado">
+    tools:context=".Estado"
+    tools:ignore="Overdraw">
 
 
     <com.github.mikephil.charting.charts.PieChart

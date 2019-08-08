@@ -27,19 +27,19 @@ class BatteryReceiver extends BroadcastReceiver {
 
             switch (status) {
                 case BatteryManager.BATTERY_STATUS_FULL:
-                    message = "Full";
+                    message = "Carga Completa";
                     break;
                 case BatteryManager.BATTERY_STATUS_CHARGING:
-                    message = "Charging";
+                    message = "Cargando Batería";
                     break;
                 case BatteryManager.BATTERY_STATUS_DISCHARGING:
-                    message = "Discharging";
+                    message = "Batería en Uso";
                     break;
                 case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
-                    message = "Not charging";
+                    message = "Batería en uso";
                     break;
                 case BatteryManager.BATTERY_STATUS_UNKNOWN:
-                    message = "Unknown";
+                    message = "Estado Actual Desconocido";
                     break;
             }
             statusLabel.setText(message);
@@ -58,13 +58,13 @@ class BatteryReceiver extends BroadcastReceiver {
             if (percentage >= 90) {
                 batteryImage.setImageDrawable(res.getDrawable(R.drawable.b100));
 
-            } else if (90 > percentage && percentage >= 65) {
+            } else if (percentage >= 65) {
                 batteryImage.setImageDrawable(res.getDrawable(R.drawable.b75));
 
-            } else if (65 > percentage && percentage >= 40) {
+            } else if (percentage >= 40) {
                 batteryImage.setImageDrawable(res.getDrawable(R.drawable.b50));
 
-            } else if (40 > percentage && percentage >= 15) {
+            } else if (percentage >= 15) {
                 batteryImage.setImageDrawable(res.getDrawable(R.drawable.b25));
             } else {
                 batteryImage.setImageDrawable(res.getDrawable(R.drawable.b0));

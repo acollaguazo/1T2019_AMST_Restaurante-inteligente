@@ -49,7 +49,7 @@ public class Disponibilidad extends AppCompatActivity {
     private void vaciarScrolling(int cantidadMesas){
         View linearLayout = findViewById(R.id.LinearScrollDisponibilidad);
         for(int i = 0; i < cantidadMesas; i++){
-            ((LinearLayout) linearLayout).removeView((LinearLayout)findViewById(i));
+            ((LinearLayout) linearLayout).removeView(findViewById(i));
         }
     }
 
@@ -111,9 +111,9 @@ public class Disponibilidad extends AppCompatActivity {
         //setting  LinearLayout vertical
         LinearLayout linearLayoutVertical = new LinearLayout(this);
         linearLayoutVertical.setOrientation(LinearLayout.VERTICAL);
-        ((LinearLayout) linearLayoutVertical).addView(TVid);
-        ((LinearLayout) linearLayoutVertical).addView(TVCapacidad);
-        ((LinearLayout) linearLayoutVertical).addView(TVEstado);
+        linearLayoutVertical.addView(TVid);
+        linearLayoutVertical.addView(TVCapacidad);
+        linearLayoutVertical.addView(TVEstado);
         //SETTING LINEARLAYOUT Horizontal
         LinearLayout layoutHorizontal = new LinearLayout(this);
         layoutHorizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -123,8 +123,8 @@ public class Disponibilidad extends AppCompatActivity {
         layoutHorizontal.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         layoutHorizontal.setGravity(Gravity.CENTER);
         layoutHorizontal.setBackgroundColor(Color.WHITE);
-        ((LinearLayout) layoutHorizontal).addView(imgEstado);
-        ((LinearLayout) layoutHorizontal).addView(linearLayoutVertical);
+        layoutHorizontal.addView(imgEstado);
+        layoutHorizontal.addView(linearLayoutVertical);
         ((LinearLayout) L).addView(layoutHorizontal);
     }
 }

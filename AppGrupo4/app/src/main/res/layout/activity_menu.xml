@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1c981"
-    tools:context=".Menu">
+    tools:context=".Menu"
+    tools:ignore="Overdraw">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +18,6 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -28,7 +28,6 @@
                 android:textSize="50sp" />
 
             <ImageView
-                android:id="@+id/imageViewLogoMenu"
                 android:layout_width="144dp"
                 android:layout_height="213dp"
                 android:layout_gravity="center"
@@ -36,7 +35,6 @@
                 app:srcCompat="@drawable/tele" />
 
             <Button
-                android:id="@+id/buttonVerMesas"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -50,7 +48,6 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonVerEstadoRestaurante"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -64,7 +61,6 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonCerrarSesion"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,7 +74,6 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonBateria"
                 android:layout_width="124dp"
                 android:layout_height="101dp"
                 android:layout_gravity="center"

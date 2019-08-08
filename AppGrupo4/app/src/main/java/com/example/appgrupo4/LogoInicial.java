@@ -1,25 +1,22 @@
 package com.example.appgrupo4;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Handler;
-import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+public class LogoInicial extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_logoinicial);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
+                Intent siguiente = new Intent(LogoInicial.this, Login.class);
+                startActivity(siguiente);
             }
         }, 1500);
     }

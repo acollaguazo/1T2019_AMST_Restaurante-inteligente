@@ -21,9 +21,9 @@
 
 
         <ScrollView
-            android:id="@+id/ScrollViewLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,6 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/imageTable"
                     android:layout_width="323dp"
                     android:layout_height="177dp"
                     android:adjustViewBounds="false"
@@ -84,7 +83,6 @@
                     android:importantForAutofill="no" />
 
                 <Button
-                    android:id="@+id/btnLogin"
                     android:layout_width="149dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
