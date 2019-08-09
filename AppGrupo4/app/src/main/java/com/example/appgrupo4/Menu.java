@@ -3,6 +3,7 @@ package com.example.appgrupo4;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
@@ -112,7 +113,22 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_disponibilidad(View view){
-        obtenerEstadoMesa(urlMesas,urlEstados);
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                obtenerEstadoMesa(urlMesas,urlEstados);
+                for (Map.Entry<String, String[]> entry : registros.entrySet()) {
+                    System.out.println(entry.getKey());
+                    System.out.println(entry.getValue()[0]);
+                    System.out.println(entry.getValue()[1]);
+                    System.out.println(entry.getValue()[2]);}
+
+                handler.postDelayed(this, 6000);
+            }
+        };
+        runnable.run();
+
         Intent siguiente = new Intent(this, Disponibilidad.class);
         startActivity(siguiente);
     }

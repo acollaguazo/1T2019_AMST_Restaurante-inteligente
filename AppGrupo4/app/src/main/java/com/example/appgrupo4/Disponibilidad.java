@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -24,7 +25,23 @@ public class Disponibilidad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disponibilidad);
-        llenarScrolling(Menu.registros);
+        refresh();
+    }
+    public void refresh(){
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                View linearLayout = findViewById(R.id.LinearScrollDisponibilidad);
+                ((LinearLayout) linearLayout).removeAllViews();
+                llenarScrolling(Menu.registros);
+                handler.postDelayed(this, 7000);
+
+                //vaciarScrolling(Menu.registros.size());
+                System.out.println("Actualizando Vista");
+            }
+        };
+        runnable.run();
     }
 
     /**
