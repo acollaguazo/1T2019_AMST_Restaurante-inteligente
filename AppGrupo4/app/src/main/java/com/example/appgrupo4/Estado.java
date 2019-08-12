@@ -1,15 +1,19 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -22,6 +26,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("SameParameterValue")
@@ -31,6 +36,13 @@ public class Estado extends AppCompatActivity {
     private final String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
     private static final int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
     private final float[] porcentajes = new float[2]; // pos 0: ocupadas, pos 1: libres
+    LinearLayout layout_estado;
+    PieChart pieChart;
+
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    public static int width, height;
+    public static String orientacion = new String("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,25 @@ public class Estado extends AppCompatActivity {
         calcularPorcentajeMesas(Menu.registros, porcentajes);
         crearPastel();
         llenarScrolling(Menu.registros);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        width = dm.widthPixels;
+        height = dm.heightPixels;
+        pieChart = (PieChart) findViewById(R.id.pieChartGraficaEstadoMesas);
+        layout_estado = (LinearLayout) findViewById(R.id.Linear123);
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            orientacion = "portrait";
+            layout_estado.setOrientation(LinearLayout.VERTICAL);
+            pieChart.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
+            pieChart.getLayoutParams().height = height/2;
+        }
+        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            orientacion = "landscape";
+            layout_estado.setOrientation(LinearLayout.HORIZONTAL);
+            pieChart.getLayoutParams().height= ViewGroup.LayoutParams.MATCH_PARENT;
+            pieChart.getLayoutParams().width = width/2;
+        }
     }
 
     /**
@@ -57,58 +88,48 @@ public class Estado extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+
+    @SuppressLint("SetTextI18n")
+    private void aggItem(List items, String mesa, String capacidad, String estado){
+        if(estado == null){
+            items.add(new Mesados(mesa,capacidad,"Sin Dato"));
+        }
+        else if(estado.equals("OC")) {
+            items.add(new Mesados(mesa,capacidad,"OCUPADA"));
+        }
+        else if(estado.equals("DE")) {
+            items.add(new Mesados(mesa,capacidad,"LIBRE"));
+        }
+    }
+
     /**
      *
      * @param registros
      */
     @SuppressWarnings("unused")
     private void llenarScrolling(HashMap<String,String[]> registros) {
+
+        List items = new ArrayList();
+
+        recycler = (RecyclerView) findViewById(R.id.reciclador2);
+        recycler.setHasFixedSize(true);
+
+        adapter = new MesadosAdapter(items);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler.setLayoutManager(mLayoutManager);
+        recycler.setItemAnimator(new DefaultItemAnimator());
+        recycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recycler.setAdapter(adapter);
+
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
             String mesa = entry.getKey();
             String ubicacion = entry.getValue()[0];
             String capacidad = entry.getValue()[1];
             String estado = entry.getValue()[2];
-            crearTextView(estado,capacidad,mesa);
+            aggItem(items,mesa,capacidad,estado);
         }
     }
 
-    /**
-     *
-     * @param estado
-     * @param capacidad
-     * @param id
-     */
-    @SuppressLint("SetTextI18n")
-    private void crearTextView(String estado, String capacidad, String id){
-        View linearLayout = findViewById(R.id.LinearScrollEstado);
-        TextView newTextView = new TextView(this);
-        if(Integer.parseInt(id)<10)
-            id = "0"+id;
-        if(estado == null){
-            newTextView.setText("           "+id+"                       "+"Sin Datos "+"                      "+capacidad);
-        }
-        else if(estado.equals("DE")){
-            newTextView.setText("           "+id+"                       "+"   Libre    "+"                      "+capacidad);
-        }
-        else if(estado.equals("OC")){
-            newTextView.setText("           "+id+"                       "+"Ocupada"+"                      "+capacidad);
-        }
-        newTextView.setId(Integer.parseInt(id));
-        newTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        ((LinearLayout) linearLayout).addView(newTextView);
-    }
-
-    /**
-     * Elimina todos los TextView que representan los datos de mesas
-     * @param numeroDeMesas numero de mesas para saber cuantos TextView se crearon al iniciar esta actividad
-     */
-    @SuppressWarnings("unused")
-    private void vaciarScrolling(int numeroDeMesas){
-        View linearLayout = findViewById(R.id.LinearScrollEstado);
-        for(int i = 0; i < numeroDeMesas; i++){
-            ((LinearLayout) linearLayout).removeView(findViewById(i));
-        }
-    }
 
     /**
      * Calcula los porcentajes de mesas ocupadas y mesas disponible y almacena estos datos en el arreglo enviado.

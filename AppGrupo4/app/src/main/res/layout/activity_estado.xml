@@ -7,58 +7,39 @@
     android:background="#FFEECF"
     android:orientation="vertical"
     tools:context=".Estado"
-    tools:ignore="Overdraw">
+    tools:ignore="Overdraw"
+    android:layout_gravity="center">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/Linear123">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChartGraficaEstadoMesas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTituloEstadoMesas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartGraficaEstadoMesas"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"/>
 
-    <TextView
-        android:id="@+id/textViewTituloEstadoMesas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="29dp"
-        android:text="@string/TituloEstadoMesa"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/scrollViewListaEstadosMesas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pieChartGraficaEstadoMesas" />
-
-    <ScrollView
-        android:id="@+id/scrollViewListaEstadosMesas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTituloEstadoMesas">
-
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:id="@+id/LinearScrollEstado"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reciclador2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="3dp"
+                android:paddingBottom="0dp"
+                android:scrollbars="vertical" />
 
+        </ScrollView>
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

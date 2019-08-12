@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,6 +36,8 @@ public class Menu extends AppCompatActivity {
         Intent login = getIntent();
         this.token = (String) Objects.requireNonNull(login.getExtras()).get("token");
         obtenerEstadoMesa(urlMesas,urlEstados);
+
+
     }
 
     /**
@@ -118,12 +120,6 @@ public class Menu extends AppCompatActivity {
             @Override
             public void run() {
                 obtenerEstadoMesa(urlMesas,urlEstados);
-                for (Map.Entry<String, String[]> entry : registros.entrySet()) {
-                    System.out.println(entry.getKey());
-                    System.out.println(entry.getValue()[0]);
-                    System.out.println(entry.getValue()[1]);
-                    System.out.println(entry.getValue()[2]);}
-
                 handler.postDelayed(this, 6000);
             }
         };
@@ -140,6 +136,7 @@ public class Menu extends AppCompatActivity {
     public void next_estado(View view){
         obtenerEstadoMesa(urlMesas,urlEstados);
         Intent siguiente = new Intent(this,Estado.class);
+
         startActivity(siguiente);
     }
 
@@ -154,5 +151,20 @@ public class Menu extends AppCompatActivity {
     public void next_bateria(View view){
         Intent siguiente = new Intent(this,EstadoBateria.class);
         startActivity(siguiente);
+    }
+
+    /**
+     * Se encarga de tomar el evento del boton de regreso del dispositivo para llevar la aplicación al task back
+     * @param keyCode Clave de código
+     * @param event Clave del Evento
+     * @return true si el evento coincide con el boton de regreso del dispositivo
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
