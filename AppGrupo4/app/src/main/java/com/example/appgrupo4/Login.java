@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -41,6 +42,35 @@ public class Login extends AppCompatActivity {
         animacion.setExitFadeDuration(4000);
         animacion.start();
         mQueue = Volley.newRequestQueue(this);
+        validarPaso();
+    }
+    public void validarPaso(){
+        if(cargarCedencial()){
+            Intent toMenuPrincipal = new Intent(getBaseContext(), Menu.class);
+            toMenuPrincipal.putExtra("token", token);
+            startActivity(toMenuPrincipal);
+        }
+
+    }
+    public void guardarCredencial(){
+        SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
+        String llave=token;
+        SharedPreferences.Editor editor=preferecias.edit();
+        System.out.println("ESTE ES EL TOKEN QUE SE VA A GUARDAR:  "+llave);
+        editor.putString("token",llave);
+        editor.commit();
+    }
+
+    public boolean cargarCedencial(){
+        SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
+        String llave=preferecias.getString("token","null");
+        System.out.println("ESTE ES EL TOKEN QUE SE GUARDOO:  "+llave);
+        token=llave;
+        if (llave.equals("null"))
+            return false;
+        else
+            return true;
+
     }
 
 
@@ -68,6 +98,7 @@ public class Login extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             token = response.getString("token");
+                            guardarCredencial();
                             Intent toMenuPrincipal = new Intent(getBaseContext(), Menu.class);
                             toMenuPrincipal.putExtra("token", token);
                             startActivity(toMenuPrincipal);

@@ -1,7 +1,10 @@
 package com.example.appgrupo4;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -145,6 +148,7 @@ public class Menu extends AppCompatActivity {
      * @param view
      */
     public void next_salir(View view){
+        borrarCredencial();
         Intent siguiente = new Intent(this,Login.class);
         startActivity(siguiente);
     }
@@ -166,5 +170,15 @@ public class Menu extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    /**
+     * Función que borra el token del archivo interno que lo almacena para verificar Log In
+     */
+    public void borrarCredencial(){
+        SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
+        String llave="null";
+        SharedPreferences.Editor editor=preferecias.edit();
+        editor.putString("token",llave);
+        editor.commit();
     }
 }
