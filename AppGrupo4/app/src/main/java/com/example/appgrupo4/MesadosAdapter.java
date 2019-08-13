@@ -1,37 +1,33 @@
 package com.example.appgrupo4;
 
-import android.content.res.Configuration;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.annotation.SuppressLint;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
 
 public class MesadosAdapter extends RecyclerView.Adapter<MesadosAdapter.MesadosViewHolder> {
-    private List<Mesados> itemsdos;
+    private final List<Mesados> itemsdos;
 
     public class MesadosViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
-        public TextView iddos;
-        public TextView capacidaddos;
-        public TextView estadodos;
+        final TextView iddos;
+        final TextView capacidaddos;
+        final TextView estadodos;
 
 
-        public MesadosViewHolder(View v) {
+        MesadosViewHolder(View v) {
             super(v);
-            iddos = (TextView) v.findViewById(R.id.mesaID);
-            capacidaddos = (TextView) v.findViewById(R.id.capacidad);
-            estadodos = (TextView) v.findViewById(R.id.estado);
+            iddos = v.findViewById(R.id.mesaID);
+            capacidaddos = v.findViewById(R.id.capacidad);
+            estadodos = v.findViewById(R.id.estado);
         }
     }
 
@@ -44,15 +40,17 @@ public class MesadosAdapter extends RecyclerView.Adapter<MesadosAdapter.MesadosV
         return itemsdos.size();
     }
 
+    @NonNull
     @Override
-    public MesadosViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public MesadosViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.mesa_carddos, viewGroup, false);
         return new MesadosViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(MesadosViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull MesadosViewHolder viewHolder, int i) {
 
 
         if(Estado.orientacion.equals("portrait")) {

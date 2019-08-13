@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings("ALL")
 public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;

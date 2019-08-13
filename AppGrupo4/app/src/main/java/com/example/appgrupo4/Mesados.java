@@ -1,9 +1,9 @@
 package com.example.appgrupo4;
 
-    public class Mesados {
-        private String iddos;
-        private String capacidaddos;
-        private String estadodos;
+    class Mesados {
+        private final String iddos;
+        private final String capacidaddos;
+        private final String estadodos;
 
         public Mesados(String id, String capacidad, String estado) {
             this.iddos = id;

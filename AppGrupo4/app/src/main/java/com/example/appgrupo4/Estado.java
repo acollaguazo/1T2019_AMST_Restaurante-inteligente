@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings("ALL")
 public class Estado extends AppCompatActivity {
 
     private PieChart pastel;
@@ -39,10 +39,8 @@ public class Estado extends AppCompatActivity {
     LinearLayout layout_estado;
     PieChart pieChart;
 
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
     public static int width, height;
-    public static String orientacion = new String("");
+    public static String orientacion = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +54,8 @@ public class Estado extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         width = dm.widthPixels;
         height = dm.heightPixels;
-        pieChart = (PieChart) findViewById(R.id.pieChartGraficaEstadoMesas);
-        layout_estado = (LinearLayout) findViewById(R.id.Linear123);
+        pieChart = findViewById(R.id.pieChartGraficaEstadoMesas);
+        layout_estado = findViewById(R.id.Linear123);
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             orientacion = "portrait";
@@ -92,7 +90,7 @@ public class Estado extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void aggItem(List items, String mesa, String capacidad, String estado){
         if(estado == null){
-            items.add(new Mesados(mesa,capacidad,"Sin Dato"));
+            items.add(new Mesados(mesa,capacidad,"SIN DATOS"));
         }
         else if(estado.equals("OC")) {
             items.add(new Mesados(mesa,capacidad,"OCUPADA"));
@@ -111,10 +109,10 @@ public class Estado extends AppCompatActivity {
 
         List items = new ArrayList();
 
-        recycler = (RecyclerView) findViewById(R.id.reciclador2);
+        RecyclerView recycler = findViewById(R.id.reciclador2);
         recycler.setHasFixedSize(true);
 
-        adapter = new MesadosAdapter(items);
+        RecyclerView.Adapter adapter = new MesadosAdapter(items);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler.setLayoutManager(mLayoutManager);
         recycler.setItemAnimator(new DefaultItemAnimator());

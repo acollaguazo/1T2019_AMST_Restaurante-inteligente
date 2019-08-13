@@ -1,10 +1,10 @@
 package com.example.appgrupo4;
 
-public class Mesa {
-    private int imagen;
-    private String id;
-    private String capacidad;
-    private String estado;
+class Mesa {
+    private final int imagen;
+    private final String id;
+    private final String capacidad;
+    private final String estado;
 
     public Mesa(String id, String capacidad, String estado, int imagen) {
         this.imagen = imagen;

@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         validarPaso();
     }
-    public void validarPaso(){
+    private void validarPaso(){
         if(cargarCedencial()){
             Intent toMenuPrincipal = new Intent(getBaseContext(), Menu.class);
             toMenuPrincipal.putExtra("token", token);
@@ -52,24 +52,21 @@ public class Login extends AppCompatActivity {
         }
 
     }
-    public void guardarCredencial(){
+    private void guardarCredencial(){
         SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
         String llave=token;
         SharedPreferences.Editor editor=preferecias.edit();
         System.out.println("ESTE ES EL TOKEN QUE SE VA A GUARDAR:  "+llave);
         editor.putString("token",llave);
-        editor.commit();
+        editor.apply();
     }
 
-    public boolean cargarCedencial(){
+    private boolean cargarCedencial(){
         SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
         String llave=preferecias.getString("token","null");
         System.out.println("ESTE ES EL TOKEN QUE SE GUARDOO:  "+llave);
         token=llave;
-        if (llave.equals("null"))
-            return false;
-        else
-            return true;
+        return !llave.equals("null");
 
     }
 

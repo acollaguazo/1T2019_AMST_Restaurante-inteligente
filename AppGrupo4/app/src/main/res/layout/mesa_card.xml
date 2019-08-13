@@ -1,5 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
@@ -16,7 +17,9 @@
             android:id="@+id/imagen"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO"
+            tools:ignore="ContentDescription,HardcodedText" />
 
         <TextView
             android:gravity="center"
@@ -27,7 +30,8 @@
             android:id="@+id/mesaID"
             android:layout_toRightOf="@+id/imagen"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:gravity="center"
@@ -37,7 +41,8 @@
             android:text="Small Text"
             android:id="@+id/capacidad"
             android:layout_below="@+id/mesaID"
-            android:layout_alignLeft="@+id/mesaID" />
+            android:layout_alignLeft="@+id/mesaID"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:gravity="center"
@@ -47,7 +52,8 @@
             android:text="Large Text"
             android:id="@+id/estado"
             android:layout_below="@+id/capacidad"
-            android:layout_alignLeft="@+id/capacidad" />
+            android:layout_alignLeft="@+id/capacidad"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

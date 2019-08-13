@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -30,7 +30,8 @@
                 android:gravity="center"
                 android:text="MENÚ"
                 android:textColor="#000000"
-                android:textSize="50sp" />
+                android:textSize="50sp"
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:id="@+id/lyResta"
@@ -52,7 +53,8 @@
                         android:layout_marginLeft="10dp"
                         android:text="Restaurante"
                         android:textColor="#050505"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/textView5"
@@ -62,7 +64,8 @@
                         android:layout_marginTop="5dp"
                         android:text="Platos del Sol"
                         android:textColor="#2B2121"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -72,7 +75,8 @@
                         android:layout_marginTop="20dp"
                         android:text="Encargado"
                         android:textColor="#050505"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/txtEncargado"
@@ -81,7 +85,8 @@
                         android:layout_marginLeft="10dp"
                         android:text="Marcos Pincay"
                         android:textColor="#2B2121"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,7 +98,9 @@
                         android:id="@+id/imageView2"
                         android:layout_width="173dp"
                         android:layout_height="190dp"
-                        app:srcCompat="@drawable/resta2" />
+                        app:srcCompat="@drawable/resta2"
+                        android:contentDescription="TODO"
+                        tools:ignore="ContentDescription,HardcodedText" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -152,7 +159,8 @@
                 android:onClick="next_bateria"
                 android:text="Bateria"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
     </ScrollView>
 

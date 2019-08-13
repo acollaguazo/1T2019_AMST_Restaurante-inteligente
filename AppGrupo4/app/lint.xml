@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconExtension">
+        <ignore path="src/main/res/drawable/mesa.jpg" />
+        <ignore path="src/main/res/drawable/mesa.jpg" />
+    </issue>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/b0.png" />
+        <ignore path="src/main/res/drawable/b100.png" />
+        <ignore path="src/main/res/drawable/b25.png" />
+        <ignore path="src/main/res/drawable/b50.png" />
+        <ignore path="src/main/res/drawable/b75.png" />
+        <ignore path="src/main/res/drawable/mesa.jpg" />
+        <ignore path="src/main/res/drawable/mesa.jpg" />
+        <ignore path="src/main/res/drawable/resta2.png" />
+        <ignore path="src/main/res/drawable/spashimagen.png" />
+        <ignore path="src/main/res/drawable/tele.png" />
+    </issue>
+    <issue id="IconXmlAndPng">
+        <ignore path="src/main/res/drawable-hdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-hdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-hdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-hdpi/ic_action_user.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_action_user.png" />
+        <ignore path="src/main/res/drawable-xhdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-xhdpi/ic_action_user.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/ic_action_pass.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/ic_action_user.png" />
+    </issue>
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/drawable/tele.png" />
+    </issue>
+</lint>

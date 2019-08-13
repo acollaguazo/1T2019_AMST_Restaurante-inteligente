@@ -13,11 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class Disponibilidad extends AppCompatActivity {
-
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +56,15 @@ public class Disponibilidad extends AppCompatActivity {
             aggItem(items,mesa,capacidad,estado);
         }
 
-        recycler = (RecyclerView) findViewById(R.id.reciclador);
+        RecyclerView recycler = findViewById(R.id.reciclador);
         recycler.setHasFixedSize(true);
 
         // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new MesaAdapter(items);
+        RecyclerView.Adapter adapter = new MesaAdapter(items);
         recycler.setAdapter(adapter);
     }
 

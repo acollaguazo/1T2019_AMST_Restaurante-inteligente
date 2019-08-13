@@ -14,6 +14,7 @@ import com.example.appgrupo4.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class MyFirebaseInstanceService extends FirebaseMessagingService {
@@ -26,7 +27,7 @@ public class MyFirebaseInstanceService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        showNotification(remoteMessage.getNotification().getTitle(),
+        showNotification(Objects.requireNonNull(remoteMessage.getNotification()).getTitle(),
                 remoteMessage.getNotification().getBody());
     }
     private void showNotification(String title, String body){
@@ -39,7 +40,7 @@ public class MyFirebaseInstanceService extends FirebaseMessagingService {
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.BLUE);
             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-            notificationManager.createNotificationChannel(notificationChannel);
+            Objects.requireNonNull(notificationManager).createNotificationChannel(notificationChannel);
         }
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
@@ -50,7 +51,7 @@ public class MyFirebaseInstanceService extends FirebaseMessagingService {
                 .setContentText(body)
                 .setContentInfo("info")
                 .setSmallIcon(R.drawable.mesa);
-        notificationManager.notify(
+        Objects.requireNonNull(notificationManager).notify(
                 new Random().nextInt(), notificationBuilder.build());
     }
 

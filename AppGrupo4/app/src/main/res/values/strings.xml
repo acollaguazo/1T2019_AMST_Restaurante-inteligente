@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     // en el inicio
     // en el login
     <string name="txtUsuario">Usuario</string>
@@ -7,15 +7,15 @@
     <string name="BotonDisponibilidad">Ver mesas</string>
     <string name="BotonEstadoTanque">Ver el estado del restaurante</string>
     <string name="BotonSalir">Cerrar Sesión</string>
-    <string name="menu">MENÚ</string>
-    <string name="antena">antena</string>
-    <string name="bateria">Bateria</string>
+    <string name="menu" tools:keep="@string/menu">MENÚ</string>
+    <string name="antena" tools:keep="@string/antena">antena</string>
+    <string name="bateria" tools:keep="@string/bateria">Bateria</string>
     <string name="SplashLogo">SplashLogo</string>
     <string name="PorcentajeVisualBateria">100%</string>
     <string name="TituloEstadoActualBateria">Estado Actual</string>
     <string name="imagenestadoactual">ImagenEstadoActual</string>
-    <string name="TituloEstadoMesa"># MESA ESTADO CAPACIDAD</string>
-    <string name="TituloDisponibilidad">DISPONIBILIDAD</string>
+    <string name="TituloEstadoMesa" tools:keep="@string/TituloEstadoMesa"># MESA ESTADO CAPACIDAD</string>
+    <string name="TituloDisponibilidad" tools:keep="@string/TituloDisponibilidad">DISPONIBILIDAD</string>
     <string name="BotonIngresar">INGRESAR</string>
     <string name="TituloLoginSmarTable">SmarTable</string>
     <string name="ImagenTableLogin">TableLogin</string>
