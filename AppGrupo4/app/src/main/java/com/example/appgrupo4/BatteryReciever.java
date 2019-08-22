@@ -9,7 +9,22 @@ import android.os.BatteryManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 class BatteryReceiver extends BroadcastReceiver {
+
+    public int valorB=Menu.valorB;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -19,39 +34,18 @@ class BatteryReceiver extends BroadcastReceiver {
         TextView percentageLabel = ((EstadoBateria)context).findViewById(R.id.textViewPorcentajeBateria);
         ImageView batteryImage = ((EstadoBateria)context).findViewById(R.id.imageEstadoActualBateria);
 
-        String action = intent.getAction();
+        //String action = intent.getAction();
 
-        if (action != null && action.equals(Intent.ACTION_BATTERY_CHANGED)) {
+        if (valorB != 0) {
 
-            // Status
-            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            String message = "";
 
-            switch (status) {
-                case BatteryManager.BATTERY_STATUS_FULL:
-                    message = "Carga Completa";
-                    break;
-                case BatteryManager.BATTERY_STATUS_CHARGING:
-                    message = "Cargando Batería";
-                    break;
-                case BatteryManager.BATTERY_STATUS_DISCHARGING:
-                    message = "Batería en Uso";
-                    break;
-                case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
-                    message = "Batería en uso";
-                    break;
-                case BatteryManager.BATTERY_STATUS_UNKNOWN:
-                    message = "Estado Actual Desconocido";
-                    break;
-            }
-            statusLabel.setText(message);
+            statusLabel.setText("Estado Actual");
 
 
             // Percentage
-            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-            int percentage = level * 100 / scale;
+            int percentage = valorB;
             percentageLabel.setText(percentage + "%");
+
 
 
             // Image
@@ -75,4 +69,5 @@ class BatteryReceiver extends BroadcastReceiver {
 
         }
     }
+
 }

@@ -30,7 +30,7 @@ public class Disponibilidad extends AppCompatActivity {
                 View linearLayout = findViewById(R.id.reciclador);
                 //((LinearLayout) linearLayout).removeAllViews();
                 llenarScrolling(Menu.registros);
-                handler.postDelayed(this, 7000);
+                handler.postDelayed(this, 8000);
 
                 //vaciarScrolling(Menu.registros.size());
                 System.out.println("Actualizando Vista");

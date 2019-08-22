@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
-                        android:text="Platos del Sol"
+                        android:text="Lucia´s"
                         android:textColor="#2B2121"
                         android:textSize="24sp"
                         tools:ignore="HardcodedText,RtlHardcoded" />

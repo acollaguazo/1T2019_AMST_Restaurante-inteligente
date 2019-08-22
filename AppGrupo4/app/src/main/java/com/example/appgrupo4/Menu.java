@@ -15,9 +15,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -26,10 +31,14 @@ import java.util.Objects;
 public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
-    private String token = "";
+    public static String token = "";
+    public static String url_bateria="https://amstdb.herokuapp.com/db/dispositivo/9";
+    public static String url_notificacion="https://fcm.googleapis.com/fcm/send";
+    public static int valorB=0;
     private final String urlEstados =  "https://amstdb.herokuapp.com/db/registroEstadoMesa";
     private final String urlMesas =  "https://amstdb.herokuapp.com/db/mesa";
     public static final HashMap<String,String[]> registros = new HashMap<>();
+    public static  HashMap<String,String[]> registrosact= new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,9 @@ public class Menu extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         Intent login = getIntent();
         this.token = (String) Objects.requireNonNull(login.getExtras()).get("token");
+        refreshB();
         obtenerEstadoMesa(urlMesas,urlEstados);
+
 
 
     }
@@ -49,6 +60,7 @@ public class Menu extends AppCompatActivity {
      * @param urlEstado
      */
     private void obtenerEstadoMesa(String urlMesa, final String urlEstado) {
+        registrosact=registros;
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET, urlMesa, null,
                 new Response.Listener<JSONArray>() {
@@ -73,6 +85,12 @@ public class Menu extends AppCompatActivity {
                                             try {
                                                 String estado = response1.getJSONObject(i).getString("estado");
                                                 Objects.requireNonNull(registros.get(response1.getJSONObject(i).getString("mesa")))[2] = estado;
+                                                //Verificacion de cambio para el envio de notificacion
+                                                if(registrosact!=null && !registrosact.equals(registros)){
+                                                    System.out.println(" HAY UNA MESA Disponible");
+                                                }
+
+
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
@@ -123,7 +141,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void run() {
                 obtenerEstadoMesa(urlMesas,urlEstados);
-                handler.postDelayed(this, 6000);
+                handler.postDelayed(this, 4000);
             }
         };
         runnable.run();
@@ -181,4 +199,96 @@ public class Menu extends AppCompatActivity {
         editor.putString("token",llave);
         editor.commit();
     }
+    public void refreshB(){
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                obtenerB(url_bateria);
+                validarBateria();
+                handler.postDelayed(this, 300000);
+            }
+        };
+        runnable.run();
+    }
+    private void obtenerB(String urlB) {
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, urlB, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(final JSONObject response) {
+
+                        try {
+                            int dato = response.getInt("bateria");
+                            System.out.println("El valor de la bareria es :::::"+dato);
+                            valorB=dato;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast=Toast.makeText(getApplicationContext(),"No hay valor de Bateria",Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("Authorization", "JWT " + Menu.token);
+                return parametros;
+            }
+        };
+        mQueue.add(request);
+    }
+    public void validarBateria(){
+        if (valorB<=15 && valorB!=0){
+            enviarNotificacion();
+        }
+    }
+    private void enviarNotificacion(){
+        Map<String, Object> params = new HashMap<>();
+        Map<String, String> notificacion = new HashMap<>();
+        notificacion.put("title","Alerta de bateria");
+        notificacion.put("body","El nivel de bateria ha bajado del 15%");
+        params.put("to", FirebaseInstanceId.getInstance().getToken());
+        params.put("collapse_key", "type_a");
+        params.put("notification",notificacion);
+        JSONObject parametros = new JSONObject(params);
+        String login_url = url_notificacion;
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST, login_url, parametros,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response);
+                        try {
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("NO SE PUDO CREAR LA NOTIFICACIÓN");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "key=AAAAzuewgHQ:APA91bHvpLOIy0vBTp6oEAJNRT_V12R4VoLSR-itmmODzM9xCWjcRlGankaI4oIg3XACy4wTqFfrN08QJUYyQ5V2PdB43QFUnVvIwBivuCERNfYdTeo6cuS2ngz4SWqRn-sbh7_Nuloj");
+                params.put("Content-Type","application/json");
+                return params;
+            }
+        };
+        mQueue.add(request);
+    }
+
+
+
+
 }

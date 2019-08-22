@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -47,9 +48,9 @@ public class Estado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estado);
         pastel = findViewById(R.id.pieChartGraficaEstadoMesas);
-        calcularPorcentajeMesas(Menu.registros, porcentajes);
-        crearPastel();
-        llenarScrolling(Menu.registros);
+
+        refresh();
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         width = dm.widthPixels;
@@ -69,6 +70,21 @@ public class Estado extends AppCompatActivity {
             pieChart.getLayoutParams().height= ViewGroup.LayoutParams.MATCH_PARENT;
             pieChart.getLayoutParams().width = width/2;
         }
+    }
+
+    public void refresh(){
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                calcularPorcentajeMesas(Menu.registros, porcentajes);
+                crearPastel();
+                llenarScrolling(Menu.registros);
+                handler.postDelayed(this, 7000);
+            }
+        };
+        runnable.run();
+
     }
 
     /**
@@ -115,8 +131,6 @@ public class Estado extends AppCompatActivity {
         RecyclerView.Adapter adapter = new MesadosAdapter(items);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler.setLayoutManager(mLayoutManager);
-        recycler.setItemAnimator(new DefaultItemAnimator());
-        recycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recycler.setAdapter(adapter);
 
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
@@ -153,7 +167,7 @@ public class Estado extends AppCompatActivity {
      * Crea el gráfico de pastel
      */
     private void crearPastel(){
-        customChart(pastel, Color.WHITE, 2000);
+        customChart(pastel, Color.TRANSPARENT, 2000);
         pastel.setHoleRadius(2);
         pastel.setHoleColor(Color.WHITE);
         pastel.setTransparentCircleRadius(6);

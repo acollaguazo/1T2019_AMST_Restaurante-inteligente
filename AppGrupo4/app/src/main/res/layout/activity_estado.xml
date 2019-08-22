@@ -5,37 +5,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="#FFEECF"
     android:orientation="vertical"
     tools:context=".Estado"
-    tools:ignore="Overdraw"
-    android:layout_gravity="center">
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:id="@+id/textEti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="11dp"
+        android:text="ESTADO DEL RESTAURANTE"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Linear123"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:id="@+id/Linear123"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:id="@+id/Linear123">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEti">
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartGraficaEstadoMesas"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp" />
 
         <ScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:foregroundGravity="center">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reciclador2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:foregroundGravity="center"
                 android:padding="3dp"
+                android:paddingLeft="60dp"
                 android:paddingBottom="0dp"
                 android:scrollbars="vertical" />
 
