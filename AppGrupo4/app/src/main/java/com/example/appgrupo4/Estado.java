@@ -158,8 +158,13 @@ public class Estado extends AppCompatActivity {
                 total--;
             }
         }
-        porcentajes[0] = (ocupados*100)/total; // ocupadas
-        porcentajes[1] = 100 - porcentajes[0]; // libres
+        try {
+            porcentajes[0] = (ocupados*100)/total; // ocupadas
+            porcentajes[1] = 100 - porcentajes[0]; // libres
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

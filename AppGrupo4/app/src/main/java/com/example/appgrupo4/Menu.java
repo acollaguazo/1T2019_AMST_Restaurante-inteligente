@@ -141,7 +141,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void run() {
                 obtenerEstadoMesa(urlMesas,urlEstados);
-                handler.postDelayed(this, 4000);
+                handler.postDelayed(this, 6000);
             }
         };
         runnable.run();
