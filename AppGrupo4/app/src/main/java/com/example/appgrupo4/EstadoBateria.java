@@ -24,12 +24,21 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * La clase de Estado de bateria Permite obtener la informacion de la bateria para mostrarla.
+ */
 public class EstadoBateria extends AppCompatActivity {
 
     public static RequestQueue mQueue;
     private final BatteryReceiver mBatteryReceiver = new BatteryReceiver();
     private final IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
+    /**
+     * METODO SOBREESCRITO: Permite almacenar y recuperar el estado de la actividad estado_bateria,
+     * ademas, se actualizara cada 7 segundos con los valores actuales.
+     *
+     * @param savedInstanceState La actividad almacenada a recuperar.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +51,10 @@ public class EstadoBateria extends AppCompatActivity {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*.8),(int)(height*.8));
     }
+
+    /**
+     * Permite ejecutar al inicio cada vez que se reinicia el registro de la bateria.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -49,6 +62,9 @@ public class EstadoBateria extends AppCompatActivity {
 
     }
 
+    /**
+     * Se desregistrara la informacion de la bateria.
+     */
     @Override
     protected void onPause() {
         unregisterReceiver(mBatteryReceiver);

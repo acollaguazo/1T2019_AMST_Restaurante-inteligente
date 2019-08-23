@@ -30,12 +30,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * La clase Estado muestra la grafica de pastel del porcentaje de mesas ocupadas y desocupadas.
+ * Ademas, de una lista de las mesas con su informacion.
+ */
 @SuppressWarnings("ALL")
 public class Estado extends AppCompatActivity {
-
     private PieChart pastel;
     private final String[] estados = new String[]{"Mesas Ocupadas", "Mesas Libres"};
-    private static final int[] colores = new int[]{Color.rgb(216, 96, 70), Color.rgb(70, 147, 216)};
+    private static final int[] colores = new int[]{Color.rgb(216, 96, 70),
+            Color.rgb(70, 147, 216)};
     private final float[] porcentajes = new float[2]; // pos 0: ocupadas, pos 1: libres
     LinearLayout layout_estado;
     PieChart pieChart;
@@ -43,6 +47,12 @@ public class Estado extends AppCompatActivity {
     public static int width, height;
     public static String orientacion = "";
 
+    /**
+     * METODO SOBREESCRITO: Permite almacenar y recuperar el estado de la actividad estado, ademas,
+     * se actualizara cada cierto tiempo con los valores actuales.
+     *
+     * @param savedInstanceState La actividad almacenada a recuperar.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,14 +74,17 @@ public class Estado extends AppCompatActivity {
             pieChart.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
             pieChart.getLayoutParams().height = height/2;
         }
-        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        else if (getResources().getConfiguration().orientation ==
+                Configuration.ORIENTATION_LANDSCAPE){
             orientacion = "landscape";
             layout_estado.setOrientation(LinearLayout.HORIZONTAL);
             pieChart.getLayoutParams().height= ViewGroup.LayoutParams.MATCH_PARENT;
             pieChart.getLayoutParams().width = width/2;
         }
     }
-
+    /**
+     * Permite la actualizacion de la aplicacion de manera automatica cada 7 segundos.
+     */
     public void refresh(){
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -88,10 +101,12 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     * METODO SOBREESCRITO: Toma la acción del boton de regresar del telefono y se encarga de llamar al método para eliminar TextView y regresar al menu
-     * @param keyCode variable que viene por override
-     * @param event evento que viene por override
-     * @return retorno que viene por override
+     * METODO SOBREESCRITO: Toma la acción del boton de regresar del telefono y se encarga de
+     * llamar al método para eliminar TextView y regresar al menu.
+     *
+     * @param keyCode   variable que viene por override
+     * @param event     evento que viene por override
+     * @return          retorno que viene por override
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -102,23 +117,34 @@ public class Estado extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-
+    /**
+     * Permite agregar a la lista de items la infomracion de las mesas dependiendo su estado.
+     *
+     * @param items     Lista de las mesas.
+     * @param mesa      El numero de la mesa.
+     * @param capacidad Numero de personas que se pueden sentar en la mesa.
+     * @param estado    El estado actual de la mesa.
+     */
     @SuppressLint("SetTextI18n")
     private void aggItem(List items, String mesa, String capacidad, String estado){
         if(estado == null){
+            // Ingresa si no se posee infomracion del estado
             items.add(new Mesados(mesa,capacidad,"SIN DATOS"));
         }
         else if(estado.equals("OC")) {
+            // Ingresa si la mesa esta ocupada.
             items.add(new Mesados(mesa,capacidad,"OCUPADA"));
         }
         else if(estado.equals("DE")) {
+            // Ingresa si la mesa esta desocupada.
             items.add(new Mesados(mesa,capacidad,"LIBRE"));
         }
     }
 
     /**
+     * Permite llenar la ventana de desplazamiento con los estados de las mesas.
      *
-     * @param registros
+     * @param registros HashMap que contiene la informacion de las mesas
      */
     @SuppressWarnings("unused")
     private void llenarScrolling(HashMap<String,String[]> registros) {
@@ -129,10 +155,14 @@ public class Estado extends AppCompatActivity {
         recycler.setHasFixedSize(true);
 
         RecyclerView.Adapter adapter = new MesadosAdapter(items);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager =
+                new LinearLayoutManager(getApplicationContext());
         recycler.setLayoutManager(mLayoutManager);
         recycler.setAdapter(adapter);
-
+        /**
+         * Se Recorre el HashMap para separar los datos de las mesas y luego se los agrega a la
+         * lista separandolos por sus estados.
+         */
         for (Map.Entry<String, String[]> entry : registros.entrySet()) {
             String mesa = entry.getKey();
             String ubicacion = entry.getValue()[0];
@@ -144,7 +174,8 @@ public class Estado extends AppCompatActivity {
 
 
     /**
-     * Calcula los porcentajes de mesas ocupadas y mesas disponible y almacena estos datos en el arreglo enviado.
+     * Calcula los porcentajes de mesas ocupadas y mesas disponible y
+     * almacena estos datos en el arreglo enviado.
      */
     private void calcularPorcentajeMesas(HashMap<String,String[]> registros, float[] porcentajes){
         int total = registros.size();
@@ -169,7 +200,7 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     * Crea el gráfico de pastel
+     * Se crea el grafico de pastel para mostrar el porcentaje del estado de las mesas.
      */
     private void crearPastel(){
         customChart(pastel, Color.TRANSPARENT, 2000);
@@ -180,11 +211,12 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     * Da las caracteristicas a nuestro objeto Chart (PieChart)
-     * @param chart objeto tipo Chart al cual le seran dadas las caracteristicas
-     * @param backgroundColor color de fondo de el objeto
-     * @param animationTime tiempo de animacion para que se presente por complesto en milisegundos
-     * @return el Chart que estamos modificando
+     * Da las caracteristicas de la grafica de pastel a msotrar.
+     *
+     * @param chart           Objeto tipo Chart al cual le seran dadas las caracteristicas
+     * @param backgroundColor Color de fondo de el objeto
+     * @param animationTime   El tiempo de animacion en milisegundos
+     * @return                El Chart que estamos modificando
      */
     private void customChart(Chart chart, int backgroundColor, int animationTime){
         chart.getDescription().setTextSize(20);
@@ -195,8 +227,9 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     * Da el formato y caracteristicas a las leyendas del objeto Chart (PieChart)
-     * @param chart
+     * Da el formato y caracteristicas a las leyendas del objeto Chart (PieChart).
+     *
+     * @param chart La grafica que se dara formato.
      */
     private void customCharLegend(Chart chart){
         Legend leyenda = chart.getLegend();
@@ -213,8 +246,9 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
+     * Permite obtener los datos de la grafica de pastel.
      *
-     * @return
+     * @return Retorna la informacion de la grafica de pastel.
      */
     private PieData getPieData(){
         PieDataSet pieDataSet = (PieDataSet) getData(new PieDataSet(getPieEntries(),""));
@@ -224,9 +258,9 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param dataset
-     * @return
+     * Obtenemos los datos del dataset.
+     * @param dataset   El dataset el cual se obtendran los datos
+     * @return          Retorna el dataset creado.
      */
     private DataSet getData(DataSet dataset){
         dataset.setColors(colores);
@@ -236,8 +270,9 @@ public class Estado extends AppCompatActivity {
     }
 
     /**
+     *  Obtener los datos a ingresar a la grafica.
      *
-     * @return
+     * @return Retorna una lista con los datos a ingresar a la grafica de pastel.
      */
     private ArrayList<PieEntry> getPieEntries(){
         ArrayList<PieEntry> entries = new ArrayList<>();

@@ -27,11 +27,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * La clase Login permite el ingreso por usuario y contraseña a la aaplicacion.
+ */
 public class Login extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private String token = null;
-
+    /**
+     * METODO SOBREESCRITO: Permite almacenar y recuperar el estado de la actividad login, ademas,
+     * se actualizara cada cierto tiempo con los valores actuales.
+     *
+     * @param savedInstanceState La actividad almacenada a recuperar.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,11 @@ public class Login extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         validarPaso();
     }
+
+    /**
+     * Permite que la aplicacion ingrese al menu una vez el usuario haya ingresado las credencial
+     * correctamente.
+     */
     private void validarPaso(){
         if(cargarCedencial()){
             Intent toMenuPrincipal = new Intent(getBaseContext(), Menu.class);
@@ -52,26 +65,38 @@ public class Login extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * Permite almacenar el token de un usuario ingresado anteriormente.
+     */
     private void guardarCredencial(){
-        SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
-        String llave=token;
-        SharedPreferences.Editor editor=preferecias.edit();
-        System.out.println("ESTE ES EL TOKEN QUE SE VA A GUARDAR:  "+llave);
+        SharedPreferences preferecias = getSharedPreferences("TokenAcseso",
+                Context.MODE_PRIVATE);
+        String llave = token;
+        SharedPreferences.Editor editor = preferecias.edit();
         editor.putString("token",llave);
         editor.apply();
     }
 
+    /**
+     * Carga las credenciales almacenadas de un usuario ingresado anteriormente.
+     *
+     * @return devuelve TRUE si existe token y FALSE si no existe el token.
+     */
     private boolean cargarCedencial(){
-        SharedPreferences preferecias =getSharedPreferences("TokenAcseso", Context.MODE_PRIVATE);
-        String llave=preferecias.getString("token","null");
-        System.out.println("ESTE ES EL TOKEN QUE SE GUARDOO:  "+llave);
-        token=llave;
+        SharedPreferences preferecias = getSharedPreferences("TokenAcseso",
+                Context.MODE_PRIVATE);
+        String llave = preferecias.getString("token","null");
+        token = llave;
         return !llave.equals("null");
 
     }
 
-
-
+    /**
+     * Permite ir al menu principal de la aplicacion si a ingresado correctamente las credenciales.
+     *
+     * @param v La vista de actividad.
+     */
     public void irMenuPrincipal(View v){
         final EditText EditTextUsuario = findViewById(R.id.txtUsuario);
         final EditText EditTextContrasena = findViewById(R.id.txtPassword);
@@ -80,9 +105,15 @@ public class Login extends AppCompatActivity {
         iniciarSesion(str_usuario,str_contrasena);
     }
 
+    /**
+     * Validacion del usuario u contraseña, en caso de ser correctos genera el token de acceso,
+     * caso contrario genera mensaje de alerta.
+     *
+     * @param usuario  Nombre de usuario ingresado.
+     * @param password Contraseña ingresada por el usuario.
+     */
     @SuppressWarnings("unchecked")
     private void iniciarSesion(String usuario, String password){
-
         Map<String, String> parametros = new HashMap();
         parametros.put("username", usuario);
         parametros.put("password", password);
@@ -104,24 +135,38 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
-
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        ConnectivityManager gestorDeConexion = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo infoDeRed = Objects.requireNonNull(gestorDeConexion).getActiveNetworkInfo();
-                        boolean connected = infoDeRed != null && infoDeRed.isAvailable() && infoDeRed.isConnected();
+                        ConnectivityManager gestorDeConexion =
+                                (ConnectivityManager)getApplicationContext().getSystemService
+                                        (Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo infoDeRed =
+                                Objects.requireNonNull(gestorDeConexion).getActiveNetworkInfo();
+                        boolean connected = infoDeRed != null && infoDeRed.isAvailable() &&
+                                infoDeRed.isConnected();
                         if(!connected) {
-                            Toast advertencia = Toast.makeText(getApplicationContext(),"Sin acceso a internet",Toast.LENGTH_SHORT);
+                            Toast advertencia = Toast.makeText(getApplicationContext(),
+                                    "Sin acceso a internet", Toast.LENGTH_SHORT);
                             advertencia.show();
                         } else {
-                            Toast advertencia = Toast.makeText(getApplicationContext(), "Datos incorrectos, intente nuevamente", Toast.LENGTH_SHORT);
+                            Toast advertencia = Toast.makeText(getApplicationContext(),
+                                    "Datos incorrectos, intente nuevamente",
+                                    Toast.LENGTH_SHORT);
                             advertencia.show();
                         }
                     }
                 });
         mQueue.add(request);
     }
+
+    /**
+     * METODO SOBREESCRITO: Permite regresar a la actividad de inicio de sesion si el usuario
+     * aplasto el boton de regreso del celular.
+     *
+     * @param keyCode Valor del boton de regreso
+     * @param event   Evento que esta realizando el boton.
+     * @return        Retorna el evento regresar a la actividad de inicio.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -133,7 +178,6 @@ public class Login extends AppCompatActivity {
 
                 }
             }, 1500);
-       //     super.onBackPressed();
             moveTaskToBack(true);
             return true;
         }
