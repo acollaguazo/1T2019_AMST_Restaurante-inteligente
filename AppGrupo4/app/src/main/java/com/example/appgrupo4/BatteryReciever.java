@@ -5,25 +5,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.BatteryManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
+@SuppressWarnings("WeakerAccess")
 class BatteryReceiver extends BroadcastReceiver {
 
-    public int valorB=Menu.valorB;
+    public final int valorB=Menu.valorB;
 
 
     @SuppressLint("SetTextI18n")

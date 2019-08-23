@@ -2,17 +2,29 @@
   <dictionary name="User">
     <words>
       <w>aaec</w>
+      <w>aaplicacion</w>
       <w>abde</w>
       <w>acceso</w>
       <w>acseso</w>
       <w>actif</w>
+      <w>actividad</w>
+      <w>actuales</w>
+      <w>actualizara</w>
+      <w>ademas</w>
       <w>advertencia</w>
       <w>agregada</w>
       <w>agregado</w>
+      <w>alerta</w>
+      <w>almacenada</w>
+      <w>almacenadas</w>
+      <w>almacenar</w>
       <w>alnr</w>
       <w>amst</w>
       <w>animacion</w>
       <w>antena</w>
+      <w>anteriormente</w>
+      <w>aplasto</w>
+      <w>aplicacion</w>
       <w>appgrupo</w>
       <w>appinvite</w>
       <w>appspot</w>
@@ -31,23 +43,33 @@
       <w>bujb</w>
       <w>bvkzf</w>
       <w>byhj</w>
+      <w>cada</w>
       <w>capacidad</w>
       <w>capacidaddos</w>
       <w>carga</w>
       <w>cargando</w>
       <w>cargar</w>
+      <w>caso</w>
       <w>cbdxgx</w>
       <w>cedencial</w>
+      <w>celular</w>
       <w>cerrar</w>
+      <w>cierto</w>
+      <w>clase</w>
       <w>clave</w>
       <w>cnma</w>
       <w>comamstgrupo</w>
       <w>completa</w>
       <w>conexion</w>
+      <w>contrario</w>
       <w>contrasena</w>
+      <w>contraseña</w>
+      <w>correctamente</w>
+      <w>correctos</w>
       <w>cqpbor</w>
       <w>cqydvqqg</w>
       <w>credencial</w>
+      <w>credenciales</w>
       <w>ctmq</w>
       <w>cwkk</w>
       <w>datos</w>
@@ -56,15 +78,20 @@
       <w>ddos</w>
       <w>dependencia</w>
       <w>desconocido</w>
+      <w>desregistrara</w>
+      <w>devuelve</w>
       <w>disponibilidad</w>
       <w>dqebbauaa</w>
       <w>dqebbauamh</w>
       <w>dqebbauamigum</w>
       <w>dqejarytyw</w>
+      <w>dtitu</w>
       <w>eciot</w>
       <w>edao</w>
       <w>edmt</w>
       <w>eidpwq</w>
+      <w>ejecutar</w>
+      <w>empresa</w>
       <w>encargado</w>
       <w>eooe</w>
       <w>eowj</w>
@@ -74,7 +101,9 @@
       <w>estadodos</w>
       <w>este</w>
       <w>etmbega</w>
+      <w>evento</w>
       <w>ewgb</w>
+      <w>existe</w>
       <w>fdpuz</w>
       <w>firebase</w>
       <w>firebasenotify</w>
@@ -95,6 +124,7 @@
       <w>guardar</w>
       <w>guardoo</w>
       <w>guqhq</w>
+      <w>haya</w>
       <w>hvkiaai</w>
       <w>hxajt</w>
       <w>ibaq</w>
@@ -108,7 +138,12 @@
       <w>implementacion</w>
       <w>implementar</w>
       <w>incorrectos</w>
+      <w>informacion</w>
+      <w>ingresada</w>
+      <w>ingresado</w>
       <w>ingresar</w>
+      <w>ingrese</w>
+      <w>ingreso</w>
       <w>inicial</w>
       <w>iniciar</w>
       <w>inicio</w>
@@ -125,18 +160,26 @@
       <w>kkedxi</w>
       <w>libreria</w>
       <w>llave</w>
+      <w>logoinicial</w>
+      <w>luego</w>
       <w>mcagc</w>
+      <w>mensaje</w>
       <w>menú</w>
       <w>mesados</w>
+      <w>metodo</w>
       <w>mhqw</w>
       <w>migum</w>
+      <w>milisegundos</w>
       <w>mjeim</w>
       <w>mnteft</w>
       <w>mntw</w>
       <w>mobilesdk</w>
+      <w>mostar</w>
+      <w>mostrarla</w>
       <w>mvcy</w>
       <w>nmgjmyy</w>
       <w>nmzh</w>
+      <w>nombre</w>
       <w>nuevamente</w>
       <w>nvac</w>
       <w>nvbamtb</w>
@@ -146,6 +189,7 @@
       <w>obbyef</w>
       <w>obbyefi</w>
       <w>obosi</w>
+      <w>obtener</w>
       <w>ocupada</w>
       <w>ojgdkwgd</w>
       <w>ojgfwwgfkw</w>
@@ -154,6 +198,7 @@
       <w>parametros</w>
       <w>paso</w>
       <w>pbpvm</w>
+      <w>permite</w>
       <w>pincay</w>
       <w>platos</w>
       <w>pmvm</w>
@@ -164,24 +209,34 @@
       <w>qfmamb</w>
       <w>qiml</w>
       <w>rczfey</w>
+      <w>realizando</w>
       <w>reciclador</w>
+      <w>recuperar</w>
+      <w>registro</w>
+      <w>regresar</w>
+      <w>regreso</w>
+      <w>reinicia</w>
       <w>repositorio</w>
       <w>respectivos</w>
       <w>resta</w>
       <w>restaurante</w>
+      <w>retorna</w>
       <w>rkaym</w>
       <w>rland</w>
       <w>salir</w>
+      <w>segundos</w>
       <w>sesion</w>
       <w>sesión</w>
       <w>siguiente</w>
       <w>skmx</w>
       <w>smar</w>
+      <w>sobreescrito</w>
       <w>spashimagen</w>
       <w>tambien</w>
       <w>tanque</w>
       <w>tcfi</w>
       <w>thvbb</w>
+      <w>tiempo</w>
       <w>tindu</w>
       <w>titulo</w>
       <w>tokenfirebase</w>
@@ -191,7 +246,10 @@
       <w>uigq</w>
       <w>usar</w>
       <w>usuario</w>
+      <w>validacion</w>
       <w>validar</w>
+      <w>valores</w>
+      <w>ventan</w>
       <w>vmlldz</w>
       <w>vtem</w>
       <w>vtmr</w>
