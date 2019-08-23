@@ -32,8 +32,8 @@ public class Menu extends AppCompatActivity {
 
     private RequestQueue mQueue;
     public static String token = "";
-    public static String url_bateria="https://amstdb.herokuapp.com/db/dispositivo/9";
-    public static String url_notificacion="https://fcm.googleapis.com/fcm/send";
+    public static final String url_bateria="https://amstdb.herokuapp.com/db/dispositivo/9";
+    public static final String url_notificacion="https://fcm.googleapis.com/fcm/send";
     public static int valorB=0;
     private final String urlEstados =  "https://amstdb.herokuapp.com/db/registroEstadoMesa";
     private final String urlMesas =  "https://amstdb.herokuapp.com/db/mesa";
@@ -50,16 +50,14 @@ public class Menu extends AppCompatActivity {
         refreshB();
         obtenerEstadoMesa(urlMesas,urlEstados);
 
-
-
     }
 
     /**
      * Se encarga de obtener datos de las mesas que se encuantran en la base de datos
-     * @param urlMesa
-     * @param urlEstado
+     * @param urlMesa URL String
+     * @param urlEstado URL String
      */
-    private void obtenerEstadoMesa(String urlMesa, final String urlEstado) {
+    private void obtenerEstadoMesa(final String urlMesa, final String urlEstado) {
         registrosact=registros;
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET, urlMesa, null,
@@ -133,7 +131,7 @@ public class Menu extends AppCompatActivity {
 
     /**
      * avanzar a la clase Disponibilidad donde se representara cada mesa de manera grafica con todos sus componentes
-     * @param view
+     * @param view Objeto view
      */
     public void next_disponibilidad(View view){
         final Handler handler = new Handler();
@@ -152,7 +150,7 @@ public class Menu extends AppCompatActivity {
 
     /**
      * avanzar a la clase Estado donde se representara por medio de un grafico de pastel, el porcentaje de mesas ocupadas y disponibles
-     * @param view
+     * @param view Objeto view
      */
     public void next_estado(View view){
         obtenerEstadoMesa(urlMesas,urlEstados);
@@ -163,13 +161,18 @@ public class Menu extends AppCompatActivity {
 
     /**
      * Cierra la aplicacion por completo
-     * @param view
+     * @param view Objeto view
      */
     public void next_salir(View view){
         borrarCredencial();
         Intent siguiente = new Intent(this,Login.class);
         startActivity(siguiente);
     }
+
+    /**
+     * avanza a la actividad donde se muestra el estado de bateria
+     * @param view Objeto view
+     */
     public void next_bateria(View view){
         Intent siguiente = new Intent(this,EstadoBateria.class);
         startActivity(siguiente);
@@ -199,6 +202,10 @@ public class Menu extends AppCompatActivity {
         editor.putString("token",llave);
         editor.commit();
     }
+
+    /**
+     * Metodo para refrescar el estado de la bateria
+     */
     public void refreshB(){
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -244,11 +251,19 @@ public class Menu extends AppCompatActivity {
         };
         mQueue.add(request);
     }
+
+    /**
+     * Valida si la notificacion va a ser o no enviada de acuerdo al estado de la bateria
+     */
     public void validarBateria(){
         if (valorB<=15 && valorB!=0){
             enviarNotificacion();
         }
     }
+
+    /**
+     * Hace un request de la base de datos para la bateria bateria
+     */
     private void enviarNotificacion(){
         Map<String, Object> params = new HashMap<>();
         Map<String, String> notificacion = new HashMap<>();
@@ -264,7 +279,7 @@ public class Menu extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println(response);
+                        //System.out.println(response);
                         try {
 
                         } catch (Exception e) {
@@ -274,7 +289,7 @@ public class Menu extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("NO SE PUDO CREAR LA NOTIFICACIÓN");
+                //System.out.println("NO SE PUDO CREAR LA NOTIFICACIÓN");
             }
         }){
             @Override
@@ -287,8 +302,5 @@ public class Menu extends AppCompatActivity {
         };
         mQueue.add(request);
     }
-
-
-
 
 }
